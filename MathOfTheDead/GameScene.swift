@@ -8,6 +8,9 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    //bullet queue numbers
+    
+    
     var gradientLayer: CAGradientLayer!
     
     var plusGun:SKSpriteNode!
@@ -321,6 +324,11 @@ class GameScene: SKScene {
         let touch:UITouch = touches.first!
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
+        
+        //testing queue
+        var queue = Queue<Int>()
+        queue.enqueue(5)
+        print(queue.front)
     
         if let name = touchedNode.name
         {
