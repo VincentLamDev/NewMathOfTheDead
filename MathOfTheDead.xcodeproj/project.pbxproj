@@ -108,6 +108,7 @@
 				TargetAttributes = {
 					84DC26211E48654000BFA266 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 3T8BJ2ZAY7;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -276,6 +277,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3T8BJ2ZAY7;
 				INFOPLIST_FILE = MathOfTheDead/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = NGU.MathOfTheDead;
@@ -288,6 +290,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3T8BJ2ZAY7;
 				INFOPLIST_FILE = MathOfTheDead/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = NGU.MathOfTheDead;
@@ -315,6 +318,7 @@
 				84DC263C1E48654000BFA266 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

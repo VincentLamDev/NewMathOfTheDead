@@ -78,8 +78,8 @@ class GameScene: SKScene {
     }
     
     func addingTopMenuBar(){
-        var menuWidth = frame.width/3
-        var menuHeight = frame.height/16
+        let menuWidth = frame.width/3
+        let menuHeight = frame.height/16
         
         var xPos = frame.minX
         var yPos = frame.maxY - menuHeight
@@ -133,8 +133,8 @@ class GameScene: SKScene {
     }
     
     func addBulletQueue(){
-        var queueWidth = frame.width * 0.1875
-        var queueHeight = frame.height/16
+        let queueWidth = frame.width * 0.1875
+        let queueHeight = frame.height/16
         
         
         var xPos = frame.minX
@@ -318,17 +318,17 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            let touch:UITouch = touches.first!
-            let positionInScene = touch.location(in: self)
-            let touchedNode = self.atPoint(positionInScene)
-        
-            if let name = touchedNode.name
+        let touch:UITouch = touches.first!
+        let positionInScene = touch.location(in: self)
+        let touchedNode = self.atPoint(positionInScene)
+    
+        if let name = touchedNode.name
+        {
+            if name == "zombie"
             {
-                if name == "zombie"
-                {
-                    touchedNode.removeFromParent()
-                }
+                touchedNode.removeFromParent()
             }
+        }
     }
         func addZombie() {
         // NOTE: GRID SYSTEM USES 0,0 AS THE CENTER OF THE SCREEN!!!
