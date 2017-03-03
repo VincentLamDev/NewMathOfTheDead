@@ -9,9 +9,12 @@ import SpriteKit
 
 class GameScene: SKScene {
     //bullet queue numbers
+    var bQueue: BulletQueue!
     
     
     var gradientLayer: CAGradientLayer!
+    
+    var zombieHealth : SKLabelNode!
     
     var plusGun:SKSpriteNode!
     var diviGun:SKSpriteNode!
@@ -129,8 +132,9 @@ class GameScene: SKScene {
         
         
         pauseButton = SKLabelNode(fontNamed: "Arial")
-        pauseButton.text = "l l"
-        pauseButton.fontSize = 20
+
+        pauseButton.text = "||"
+        pauseButton.fontSize = 3
         
         // Determine the font scaling factor that should let the label text fit in the given rectangle.
         let scalingFactor = min(pauseButtonBox.frame.width / pauseButton.frame.width, pauseButtonBox.frame.height / pauseButton.frame.height)
@@ -173,6 +177,9 @@ class GameScene: SKScene {
     }
     
     func addBulletQueue(zvalue: Double){
+        //numbers in bullet queue
+        bQueue = BulletQueue.init()
+        
         let queueWidth = frame.width * 0.1875
         let queueHeight = frame.height/16
         
@@ -282,6 +289,9 @@ class GameScene: SKScene {
         bullet4.position = CGPoint(x: bullQueue4Box.frame.midX, y: bullQueue4Box.frame.midY)
         bullet4.zPosition = CGFloat(zvalue);
         addChild(bullet4)
+        
+        //giving current bullet a name
+        bullet4.name = "currentBullet"
         
     }
     
@@ -414,19 +424,25 @@ class GameScene: SKScene {
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
         
-        //testing queue
-        var queue = Queue<Int>()
-        queue.enqueue(5)
-        print(queue.front)
-    
+        //gets the current front of queue
+        print(bQueue.queue.front)
+        
         if let name = touchedNode.name
         {
             if name == "zombie"
             {
                 touchedNode.removeFromParent()
+            } else if name == "currentBullet" {
+                //remove first bullet and generate another one
+                bQueue.generateNewBullet()
+                print(bQueue.queue)
             }
         }
     }
+    // Generates a random number between -10 and 10 to represent zombie health
+//    func randomZombieHealth(){
+//        let health = Int(arc4random_uniform(11) + 1)
+//    }
     func addZombie() {
         // NOTE: GRID SYSTEM USES 0,0 AS THE CENTER OF THE SCREEN!!!
         
@@ -435,6 +451,13 @@ class GameScene: SKScene {
         let aspectRatio = zombie.size.width/zombie.size.height
         let zombieWidth = frame.width/4
         zombie.size = CGSize(width: zombieWidth, height: zombieWidth/aspectRatio)
+        
+        // Create zomibe health 
+        let health = Int(arc4random_uniform(11) + 1)
+        zombieHealth = SKLabelNode(fontNamed: "Arial")
+        zombieHealth.fontSize = 50
+        zombieHealth.text = String(health)
+        
         // Determine where to spawn the monster along the Y axis
         
         // Determining min x value to spawn zombie
@@ -448,8 +471,10 @@ class GameScene: SKScene {
         // and along a random position along the Y axis as calculated above
         zombie.position = CGPoint(x: actualX, y: frame.maxY + zombie.size.height)
         zombie.zPosition = CGFloat(1.0);
+        zombieHealth.position.y =  zombie.size.height/1.25 * -1
         // Add the monster to the scene
         addChild(zombie)
+        zombie.addChild(zombieHealth)
         
         // Determine speed of the monster
         //    let actualDuration = random(min: CGFloat(2.0), max: CGFloat(4.0))
