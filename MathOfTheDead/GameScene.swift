@@ -9,6 +9,7 @@ import SpriteKit
 
 class GameScene: SKScene {
     //bullet queue numbers
+    var bQueue: BulletQueue!
     
     
     var gradientLayer: CAGradientLayer!
@@ -101,8 +102,8 @@ class GameScene: SKScene {
         
         
         pauseButton = SKLabelNode(fontNamed: "Arial")
-        pauseButton.text = "PAUSE"
-        pauseButton.fontSize = 20
+        pauseButton.text = "||"
+        pauseButton.fontSize = 3
         
         // Determine the font scaling factor that should let the label text fit in the given rectangle.
         let scalingFactor = min(pauseButtonBox.frame.width / pauseButton.frame.width, pauseButtonBox.frame.height / pauseButton.frame.height)
@@ -145,6 +146,9 @@ class GameScene: SKScene {
     }
     
     func addBulletQueue(zvalue: Double){
+        //numbers in bullet queue
+        bQueue = BulletQueue.init()
+        
         let queueWidth = frame.width * 0.1875
         let queueHeight = frame.height/16
         
@@ -255,6 +259,9 @@ class GameScene: SKScene {
         bullet4.zPosition = CGFloat(zvalue);
         addChild(bullet4)
         
+        //giving current bullet a name
+        bullet4.name = "currentBullet"
+        
     }
     
     
@@ -355,7 +362,6 @@ class GameScene: SKScene {
     
     
     func addingGameOverLine(){
-        
         let bezierPath = UIBezierPath()
         let startPoint = CGPoint(x:(frame.minX), y:frame.midY)
         let endPoint = CGPoint(x:frame.maxX, y:frame.midY)
@@ -378,16 +384,18 @@ class GameScene: SKScene {
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
         
-        //testing queue
-        var queue = Queue<Int>()
-        queue.enqueue(5)
-        print(queue.front)
-    
+        //gets the current front of queue
+        print(bQueue.queue.front)
+        
         if let name = touchedNode.name
         {
             if name == "zombie"
             {
                 touchedNode.removeFromParent()
+            } else if name == "currentBullet" {
+                //remove first bullet and generate another one
+                bQueue.generateNewBullet()
+                print(bQueue.queue)
             }
         }
     }
