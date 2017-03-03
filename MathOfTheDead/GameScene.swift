@@ -13,6 +13,8 @@ class GameScene: SKScene {
     
     var gradientLayer: CAGradientLayer!
     
+    var zombieHealth : SKLabelNode!
+    
     var plusGun:SKSpriteNode!
     var diviGun:SKSpriteNode!
     var minusGun:SKSpriteNode!
@@ -389,6 +391,10 @@ class GameScene: SKScene {
             }
         }
     }
+    // Generates a random number between -10 and 10 to represent zombie health
+//    func randomZombieHealth(){
+//        let health = Int(arc4random_uniform(11) + 1)
+//    }
     func addZombie() {
         // NOTE: GRID SYSTEM USES 0,0 AS THE CENTER OF THE SCREEN!!!
         
@@ -397,6 +403,13 @@ class GameScene: SKScene {
         let aspectRatio = zombie.size.width/zombie.size.height
         let zombieWidth = frame.width/4
         zombie.size = CGSize(width: zombieWidth, height: zombieWidth/aspectRatio)
+        
+        // Create zomibe health 
+        let health = Int(arc4random_uniform(11) + 1)
+        zombieHealth = SKLabelNode(fontNamed: "Arial")
+        zombieHealth.fontSize = 50
+        zombieHealth.text = String(health)
+        
         // Determine where to spawn the monster along the Y axis
         
         // Determining min x value to spawn zombie
@@ -410,8 +423,10 @@ class GameScene: SKScene {
         // and along a random position along the Y axis as calculated above
         zombie.position = CGPoint(x: actualX, y: frame.maxY + zombie.size.height)
         zombie.zPosition = CGFloat(1.0);
+        zombieHealth.position.y =  zombie.size.height/1.25 * -1
         // Add the monster to the scene
         addChild(zombie)
+        zombie.addChild(zombieHealth)
         
         // Determine speed of the monster
         //    let actualDuration = random(min: CGFloat(2.0), max: CGFloat(4.0))
