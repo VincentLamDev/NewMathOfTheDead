@@ -11,6 +11,15 @@ class GameScene: SKScene {
     //bullet queue numbers
     var bQueue: BulletQueue!
     
+    //all zombies
+    var zombies: [SKSpriteNode]!
+    
+    var kills: Int = 0
+    
+    //score
+    var score: Int = 0
+    
+    var currentGun : String! = "plus"
     
     var gradientLayer: CAGradientLayer!
     
@@ -129,6 +138,7 @@ class GameScene: SKScene {
         pauseButtonBox.lineWidth = frame.size.width * 0.01
         pauseButtonBox.zPosition = CGFloat(zvalue);
         addChild(pauseButtonBox)
+        pauseButtonBox.name = "pause"
         
         
         pauseButton = SKLabelNode(fontNamed: "Arial")
@@ -342,6 +352,7 @@ class GameScene: SKScene {
         plusGunBox.lineWidth = frame.size.width * 0.01
         plusGunBox.zPosition = CGFloat(zvalue);
         addChild(plusGunBox)
+        plusGunBox.name = "plusGun"
         
         
         minusGun = SKSpriteNode(imageNamed: "subGun")
@@ -361,6 +372,7 @@ class GameScene: SKScene {
         minusGunBox.lineWidth = frame.size.width * 0.01
         minusGunBox.zPosition = CGFloat(zvalue);
         addChild(minusGunBox)
+        minusGunBox.name = "minusGun"
         
         
         multiGun = SKSpriteNode(imageNamed: "multiGun")
@@ -381,6 +393,7 @@ class GameScene: SKScene {
         multiGunBox.lineWidth = frame.size.width * 0.01
         multiGunBox.zPosition = CGFloat(zvalue);
         addChild(multiGunBox)
+        multiGunBox.name = "multiGun"
         
         
         diviGun = SKSpriteNode(imageNamed: "diviGun")
@@ -400,6 +413,7 @@ class GameScene: SKScene {
         diviGunBox.lineWidth = frame.size.width * 0.01
         diviGunBox.zPosition = CGFloat(zvalue);
         addChild(diviGunBox)
+        diviGunBox.name = "diviGun"
     }
     
     func createGradientLayer() {
@@ -444,23 +458,110 @@ class GameScene: SKScene {
         addChild(EndOfGameLine)
     }
     
+    func plusOperation(_ healthNode: SKLabelNode) {
+        var health = Int(healthNode.text!)!
+        print(bQueue.queue.front)
+        health += bQueue.queue.front
+        healthNode.text = String(health)
+    }
+    
+    func minusOperation(_ healthNode: SKLabelNode) {
+        var health = Int(healthNode.text!)!
+        print(bQueue.queue.front)
+        health -= bQueue.queue.front
+        healthNode.text = String(health)
+    }
+    
+    func multiOperation(_ healthNode: SKLabelNode) {
+        var health = Int(healthNode.text!)!
+        print(bQueue.queue.front)
+        health *= bQueue.queue.front
+        healthNode.text = String(health)
+    }
+    
+    func diviOperation(_ healthNode: SKLabelNode) {
+        var health = Int(healthNode.text!)!
+        if(bQueue.queue.front == 0) {
+            health /= 1
+        }
+        print(bQueue.queue.front)
+        health /= bQueue.queue.front
+        healthNode.text = String(health)
+    }
+    
+    func shootZombie(_ zombie: SKSpriteNode, _ healthNode: SKLabelNode) {
+        var killed : Bool = false
+        
+        switch currentGun {
+        case "plus":
+            plusOperation(healthNode)
+        case "minus":
+            minusOperation(healthNode)
+        case "multi":
+            multiOperation(healthNode)
+        case "divi":
+            diviOperation(healthNode)
+        default:
+            print("error")
+        }
+        
+        if(Int(healthNode.text!)! == 0) {
+            //KILL ZOMBIE
+            //add to score
+            score += 5
+            
+            kills += 1
+            
+            //remove from scene
+            zombie.removeFromParent()
+        }
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch:UITouch = touches.first!
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
         
-        //gets the current front of queue
-        print(bQueue.queue.front)
-        
         if let name = touchedNode.name
         {
-            if name == "zombie"
-            {
-                touchedNode.removeFromParent()
-            } else if name == "currentBullet" {
-                //remove first bullet and generate another one
-                bQueue.generateNewBullet()
-                print(bQueue.queue)
+            //if its paused, unpause
+            if self.view?.isPaused == true {
+                if name == "pause" {
+                    self.view?.isPaused = false
+                    print("pause")
+                }
+            } else {
+                if name == "zombie" {
+                    //get health of zombie
+                    let healthNode = touchedNode.childNode(withName: "health") as! SKLabelNode
+                    
+                    shootZombie(touchedNode as! SKSpriteNode, healthNode)
+                    
+                    bQueue.generateNewBullet()
+                    print(bQueue.queue)
+                    
+                    print("Score: \(score)")
+                } else if name == "plusGun" {
+                    currentGun = "plus"
+                    print("plus")
+                } else if name == "minusGun" {
+                    currentGun = "minus"
+                    print("minus")
+                } else if  name == "multiGun" {
+                    currentGun = "multi"
+                    print("multi")
+                } else if  name == "diviGun" {
+                    currentGun = "divi"
+                    print("divi")
+                
+                } else if name == "pause" {
+                    self.view?.isPaused = true
+                    print("pause")
+                } else if name == "currentBullet" {
+                    //remove first bullet and generate another one
+                    bQueue.generateNewBullet()
+                    print(bQueue.queue)
+                }
             }
         }
     }
@@ -477,11 +578,13 @@ class GameScene: SKScene {
         let zombieWidth = frame.width/4
         zombie.size = CGSize(width: zombieWidth, height: zombieWidth/aspectRatio)
         
-        // Create zomibe health 
-        let health = Int(arc4random_uniform(11) + 1)
+        // Create zombie health
+        let healthNum = Int(arc4random_uniform(11) + 1)
+        
+        //display health to the screen
         zombieHealth = SKLabelNode(fontNamed: "Arial")
         zombieHealth.fontSize = 50
-        zombieHealth.text = String(health)
+        zombieHealth.text = String(healthNum)
         
         // Determine where to spawn the monster along the Y axis
         
@@ -526,6 +629,7 @@ class GameScene: SKScene {
         
         //setting name for tap detection
         zombie.name = "zombie"
+        zombieHealth.name = "health"
     }
     
 }

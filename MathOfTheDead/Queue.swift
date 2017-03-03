@@ -61,7 +61,13 @@ public class BulletQueue {
     public func generateValue() -> Int {
         //implement checking for max number of 0's later
         
-        return minVal + Int(arc4random_uniform(UInt32(maxVal - minVal + 1)))
+        var val = minVal + Int(arc4random_uniform(UInt32(maxVal - minVal + 1)))
+        
+        while val == 0 {
+            val = minVal + Int(arc4random_uniform(UInt32(maxVal - minVal + 1)))
+        }
+        
+        return val
     }
     
     
