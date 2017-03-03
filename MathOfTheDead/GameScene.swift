@@ -137,7 +137,7 @@ class GameScene: SKScene {
         pauseButton.fontSize = 3
         
         // Determine the font scaling factor that should let the label text fit in the given rectangle.
-        let scalingFactor = min(pauseButtonBox.frame.width / pauseButton.frame.width, pauseButtonBox.frame.height / pauseButton.frame.height)
+        var scalingFactor = min(pauseButtonBox.frame.width / pauseButton.frame.width, pauseButtonBox.frame.height / pauseButton.frame.height)
         
         // Change the fontSize.
         pauseButton.fontSize *= scalingFactor
@@ -161,6 +161,10 @@ class GameScene: SKScene {
         addChild(waveNumberBox)
         
         
+
+        
+        
+        
         xPos = xPos + menuWidth
         yPos = frame.maxY - menuHeight
         scoreDisplayBox = SKShapeNode()
@@ -173,6 +177,27 @@ class GameScene: SKScene {
         scoreDisplayBox.lineWidth = frame.size.width * 0.01
         scoreDisplayBox.zPosition = CGFloat(zvalue);
         addChild(scoreDisplayBox)
+        
+        
+        
+        
+        scoreDisplayLabel = SKLabelNode(fontNamed: "Arial")
+        
+        scoreDisplayLabel.text = "Score: "
+        scoreDisplayLabel.fontSize = 20
+        
+        // Determine the font scaling factor that should let the label text fit in the given rectangle.
+        scalingFactor = min(scoreDisplayBox.frame.width / scoreDisplayLabel.frame.width, scoreDisplayBox.frame.height / pauseButton.frame.height)
+        
+        // Change the fontSize.
+        scoreDisplayLabel.fontSize *= scalingFactor
+        
+        // Optionally move the SKLabelNode to the center of the rectangle.
+        scoreDisplayLabel.position = CGPoint(x: scoreDisplayBox.frame.midX, y: scoreDisplayBox.frame.midY - scoreDisplayLabel.frame.height / 2.0)
+        scoreDisplayLabel.zPosition = CGFloat(zvalue);
+        addChild(scoreDisplayLabel)
+
+        
         
     }
     
