@@ -69,10 +69,40 @@ class GameScene: SKScene {
     var walkFrames: [SKTexture]!
     var zombieAnimation: SKAction!
     
+    
+    
+    
     override func didMove(to view: SKView) {
         
-        addingGuns()
-        addingGameOverLine()
+        let bgTexture = SKTexture(imageNamed: "dark-grass")
+        let bgDefinition = SKTileDefinition(texture: bgTexture, size: bgTexture.size())
+        let bgGroup = SKTileGroup(tileDefinition: bgDefinition)
+        let tileSet = SKTileSet(tileGroups: [bgGroup])
+        //let bgNode = SKTileMapNode(tileSet: tileSet, columns: 4, rows: 8, tileSize: bgTexture.size())
+        
+        let bgNode = SKTileMapNode(tileSet: tileSet, columns: 4, rows: 8, tileSize: bgTexture.size(), fillWith: bgGroup)
+        
+        bgNode.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
+        bgNode.setScale(1)
+        bgNode.zPosition = CGFloat(1.0)
+        
+//        let tile = bgNode.tileSet.tileGroups.first(
+//            where: {$0.name == "DarkGrass"})
+        
+//        bgNode.fill(with: tile)
+//        for column in (0..4) {
+//            for row in 0..4 {
+//                bgNode.setTileGroup(tile, forColumn: column, row: row)
+//            }
+//        }
+        
+        //let bgNode = SKTileMapNode(tileSet: "darkGrass", columns: 5, rows: 5, tileSize: bgTexture.size(), fillWithTileGroup: tile)
+
+        self.addChild(bgNode)
+
+        
+        addingGuns(zvalue: 2.0)
+        addingGameOverLine(zvalue: 2.0)
         addingTopMenuBar(zvalue: 2.0)
         addBulletQueue(zvalue: 2.0)
         
@@ -112,6 +142,7 @@ class GameScene: SKScene {
         
         
         pauseButton = SKLabelNode(fontNamed: "Arial")
+
         pauseButton.text = "||"
         pauseButton.fontSize = 3
         
@@ -275,14 +306,15 @@ class GameScene: SKScene {
     }
     
     
-    func addingGuns(){
+    func addingGuns(zvalue: Double){
         plusGun = SKSpriteNode(imageNamed: "plusGun")
         let width = frame.width/4
         let aspectRatio = plusGun.size.width/plusGun.size.height
         plusGun.size = CGSize(width: width, height: width/aspectRatio)
-        var xPos = (-1 * (frame.width/2)) + plusGun.size.width/2
-        let yPos = (-1 * (frame.height/2)) + plusGun.size.height/2
+        var xPos = (frame.minX + plusGun.size.width/2)
+        let yPos = (frame.minY + plusGun.size.height/2)
         plusGun.position = CGPoint(x: xPos, y: yPos)
+        plusGun.zPosition = CGFloat(zvalue);
         addChild(plusGun)
         
         plusGunBox = SKShapeNode()
@@ -290,10 +322,10 @@ class GameScene: SKScene {
                                                            y: yPos - plusGun.size.height/2,
                                                            width: plusGun.size.width,
                                                            height: plusGun.size.width), cornerRadius: 0).cgPath
-        plusGunBox.position = CGPoint(x: 0, y: 0)
         plusGunBox.fillColor = UIColor.red
         plusGunBox.strokeColor = UIColor.black
         plusGunBox.lineWidth = frame.size.width * 0.01
+        plusGunBox.zPosition = CGFloat(zvalue);
         addChild(plusGunBox)
         plusGunBox.name = "plusGun"
         
@@ -302,6 +334,7 @@ class GameScene: SKScene {
         minusGun.size = CGSize(width: width, height: width/aspectRatio)
         xPos = xPos + plusGun.size.width
         minusGun.position = CGPoint(x: xPos, y: yPos)
+        minusGun.zPosition = CGFloat(zvalue);
         addChild(minusGun)
         
         minusGunBox = SKShapeNode()
@@ -309,10 +342,10 @@ class GameScene: SKScene {
                                                             y: yPos - minusGun.size.height/2,
                                                             width: minusGun.size.width,
                                                             height: minusGun.size.width), cornerRadius: 0).cgPath
-        minusGunBox.position = CGPoint(x: 0, y: 0)
         minusGunBox.fillColor = UIColor.red
         minusGunBox.strokeColor = UIColor.black
         minusGunBox.lineWidth = frame.size.width * 0.01
+        minusGunBox.zPosition = CGFloat(zvalue);
         addChild(minusGunBox)
         minusGunBox.name = "minusGun"
         
@@ -321,6 +354,7 @@ class GameScene: SKScene {
         multiGun.size = CGSize(width: width, height: width/aspectRatio)
         xPos = xPos + plusGun.size.width
         multiGun.position = CGPoint(x: xPos, y: yPos)
+        multiGun.zPosition = CGFloat(zvalue);
         addChild(multiGun)
         
         
@@ -329,10 +363,10 @@ class GameScene: SKScene {
                                                             y: yPos - multiGun.size.height/2,
                                                             width: multiGun.size.width,
                                                             height: multiGun.size.width), cornerRadius: 0).cgPath
-        multiGunBox.position = CGPoint(x: 0, y: 0)
         multiGunBox.fillColor = UIColor.red
         multiGunBox.strokeColor = UIColor.black
         multiGunBox.lineWidth = frame.size.width * 0.01
+        multiGunBox.zPosition = CGFloat(zvalue);
         addChild(multiGunBox)
         multiGunBox.name = "multiGun"
         
@@ -341,6 +375,7 @@ class GameScene: SKScene {
         diviGun.size = CGSize(width: width, height: width/aspectRatio)
         xPos = xPos + plusGun.size.width
         diviGun.position = CGPoint(x: xPos, y: yPos)
+        diviGun.zPosition = CGFloat(zvalue);
         addChild(diviGun)
         
         diviGunBox = SKShapeNode()
@@ -348,10 +383,10 @@ class GameScene: SKScene {
                                                            y: yPos - diviGun.size.height/2,
                                                            width: diviGun.size.width,
                                                            height: diviGun.size.width), cornerRadius: 0).cgPath
-        diviGunBox.position = CGPoint(x: 0, y: 0)
         diviGunBox.fillColor = UIColor.red
         diviGunBox.strokeColor = UIColor.black
         diviGunBox.lineWidth = frame.size.width * 0.01
+        diviGunBox.zPosition = CGFloat(zvalue);
         addChild(diviGunBox)
         diviGunBox.name = "diviGun"
     }
@@ -375,10 +410,14 @@ class GameScene: SKScene {
     }
     
     
-    func addingGameOverLine(){
+    func addingGameOverLine(zvalue: Double){
+        
+        //let y = frame.midY - (frame.height * 0.15)
+        let y = frame.minY + plusGun.size.height + plusGun.size.height * 0.25
+        
         let bezierPath = UIBezierPath()
-        let startPoint = CGPoint(x:(frame.minX), y:frame.midY)
-        let endPoint = CGPoint(x:frame.maxX, y:frame.midY)
+        let startPoint = CGPoint(x:(frame.minX), y: y)
+        let endPoint = CGPoint(x:frame.maxX, y: y)
         bezierPath.move(to: startPoint)
         bezierPath.addLine(to: endPoint)
         
@@ -386,8 +425,9 @@ class GameScene: SKScene {
         let dashed = CGPath(__byDashing: bezierPath.cgPath, transform: nil, phase: 0, lengths: pattern, count: 2)
         
         EndOfGameLine = SKShapeNode.init(path: dashed!)
-        EndOfGameLine.position = CGPoint(x:frame.midX, y: (frame.minY * 0.65))
+        //EndOfGameLine.position = CGPoint(x:frame.midX, y: (frame.minY * 0.65))
         EndOfGameLine.lineWidth = 10;
+        EndOfGameLine.zPosition = CGFloat(zvalue)
         //physicsBody = SKPhysicsBody(edgeFrom: startPoint, to: endPoint)
         //physicsBody?.restitution = 0.3
         addChild(EndOfGameLine)
@@ -544,12 +584,21 @@ class GameScene: SKScene {
         let actualDuration = CGFloat(15.0)
         
         // Create the actions
-        let gameOverLine = (frame.minY * 0.65) + zombie.size.height/2
+        let gameOverLine = frame.minY + plusGun.size.height + plusGun.size.height * 0.25 + zombie.size.height/2
         
         let actionMove = SKAction.move(to: CGPoint(x: actualX, y: gameOverLine), duration: TimeInterval(actualDuration))
         let actionMoveDone = SKAction.removeFromParent()
-        zombie.run(SKAction.sequence([actionMove, actionMoveDone]))
+
+        let loseAction = SKAction.run() {
+            let reveal = SKTransition.flipVertical(withDuration: 0.5)
+            let gameOverScene = GameOverScene(size: self.size, won: false)
+            self.view?.presentScene(gameOverScene, transition: reveal)
+        }
+
         
+        zombie.run(SKAction.sequence([actionMove, loseAction, actionMoveDone]))
+        
+
         //animate zombie walking
         zombie.run(SKAction.repeatForever(zombieAnimation))
         
