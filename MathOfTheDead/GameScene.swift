@@ -85,18 +85,6 @@ class GameScene: SKScene {
         bgNode.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
         bgNode.setScale(1)
         bgNode.zPosition = CGFloat(1.0)
-        
-//        let tile = bgNode.tileSet.tileGroups.first(
-//            where: {$0.name == "DarkGrass"})
-        
-//        bgNode.fill(with: tile)
-//        for column in (0..4) {
-//            for row in 0..4 {
-//                bgNode.setTileGroup(tile, forColumn: column, row: row)
-//            }
-//        }
-        
-        //let bgNode = SKTileMapNode(tileSet: "darkGrass", columns: 5, rows: 5, tileSize: bgTexture.size(), fillWithTileGroup: tile)
 
         self.addChild(bgNode)
 
@@ -153,8 +141,9 @@ class GameScene: SKScene {
         pauseButton.fontSize *= scalingFactor
         
         // Optionally move the SKLabelNode to the center of the rectangle.
-        pauseButton.position = CGPoint(x: pauseButtonBox.frame.midX, y: pauseButtonBox.frame.midY - pauseButton.frame.height / 2.0)
-        pauseButton.zPosition = CGFloat(zvalue);
+        var gap = (pauseButtonBox.frame.height - pauseButton.frame.height)/2
+        pauseButton.position = CGPoint(x: pauseButtonBox.frame.midX, y: (pauseButtonBox.frame.maxY - pauseButtonBox.frame.height/2) - gap/2)
+        pauseButton.zPosition = CGFloat(zvalue)
         addChild(pauseButton)
         
         xPos = xPos + menuWidth
@@ -169,8 +158,6 @@ class GameScene: SKScene {
         waveNumberBox.lineWidth = frame.size.width * 0.01
         waveNumberBox.zPosition = CGFloat(zvalue);
         addChild(waveNumberBox)
-        
-        
 
         waveNumberLabel = SKLabelNode(fontNamed: "Arial")
         
