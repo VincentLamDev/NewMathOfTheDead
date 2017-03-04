@@ -46,7 +46,6 @@ class GameScene: SKScene {
     var scoreDisplayLabel:SKLabelNode!
     
     
-    
     var bullQueue0Box:SKShapeNode!
     var bullQueue0Label:SKLabelNode!
     
@@ -62,7 +61,9 @@ class GameScene: SKScene {
     var bullQueue4Box:SKShapeNode!
     var bullQueue4Label:SKLabelNode!
     
-    
+    var bulletQueueBoxes: [SKShapeNode] = [SKShapeNode]()
+    var bulletQueueLabels: [SKLabelNode] = [SKLabelNode]()
+
     
     var EndOfGameLine:SKShapeNode!
     
@@ -217,28 +218,6 @@ class GameScene: SKScene {
         bullet0.zPosition = CGFloat(zvalue);
         addChild(bullet0)
         
-        
-        var bul0 : Int!
-        bul0 = bQueue.queue.fifth
-        print("after int")
-        print(bul0)
-        
-        bullQueue0Label = SKLabelNode(fontNamed: "Arial")
-        bullQueue0Label.text = String(bul0)
-        bullQueue0Label.fontSize = 2
-        bullQueue0Label.zPosition = CGFloat(zvalue + 2)
-        
-        
-        // Determine the font scaling factor that should let the label text fit in the given rectangle.
-        let scalingFactorB0 = min(bullQueue0Box.frame.width / bullQueue0Label.frame.width, bullQueue0Box.frame.height / bullQueue0Label.frame.height)
-        
-        // Change the fontSize.
-        bullQueue0Label.fontSize *= scalingFactorB0
-        
-        // Optionally move the SKLabelNode to the center of the rectangle.
-        bullQueue0Label.position = CGPoint(x: bullQueue0Box.frame.midX, y: bullQueue0Box.frame.midY - bullQueue0Label.frame.height / 2.0)
-        bullQueue0Label.zPosition = CGFloat(zvalue + 2);
-        addChild(bullQueue0Label)
         //////////Bullet 1/////////////
         
         //////////Bullet 2/////////////
@@ -265,26 +244,6 @@ class GameScene: SKScene {
         bullet1.zPosition = CGFloat(zvalue);
         addChild(bullet1)
         
-        var bul1 : Int!
-        bul1 = bQueue.queue.fourth
-        
-        bullQueue1Label = SKLabelNode(fontNamed: "Arial")
-        bullQueue1Label.text = String(bul1)
-        bullQueue1Label.fontSize = 2
-        bullQueue1Label.zPosition = CGFloat(zvalue + 2)
-        
-        
-        // Determine the font scaling factor that should let the label text fit in the given rectangle.
-        let scalingFactorB1 = min(bullQueue1Box.frame.width / bullQueue1Label.frame.width, bullQueue1Box.frame.height / bullQueue1Label.frame.height)
-        
-        // Change the fontSize.
-        bullQueue1Label.fontSize *= scalingFactorB1
-        
-        // Optionally move the SKLabelNode to the center of the rectangle.
-        bullQueue1Label.position = CGPoint(x: bullQueue1Box.frame.midX, y: bullQueue1Box.frame.midY - bullQueue1Label.frame.height / 2.0)
-        bullQueue1Label.zPosition = CGFloat(zvalue + 2);
-        addChild(bullQueue1Label)
-        
         
         //////////Bullet 2/////////////
         
@@ -310,26 +269,6 @@ class GameScene: SKScene {
         bullet2.zPosition = CGFloat(zvalue);
         addChild(bullet2)
         
-        var bul2 : Int!
-        bul2 = bQueue.queue.third
-        
-        bullQueue2Label = SKLabelNode(fontNamed: "Arial")
-        bullQueue2Label.text = String(bul2)
-        bullQueue2Label.fontSize = 2
-        bullQueue2Label.zPosition = CGFloat(zvalue + 2)
-        
-        
-        // Determine the font scaling factor that should let the label text fit in the given rectangle.
-        let scalingFactorB2 = min(bullQueue2Box.frame.width / bullQueue2Label.frame.width, bullQueue2Box.frame.height / bullQueue2Label.frame.height)
-        
-        // Change the fontSize.
-        bullQueue2Label.fontSize *= scalingFactorB2
-        
-        // Optionally move the SKLabelNode to the center of the rectangle.
-        bullQueue2Label.position = CGPoint(x: bullQueue2Box.frame.midX, y: bullQueue2Box.frame.midY - bullQueue2Label.frame.height / 2.0)
-        bullQueue2Label.zPosition = CGFloat(zvalue + 2);
-        addChild(bullQueue2Label)
-        
         
         //////////Bullet 3/////////////
         
@@ -354,25 +293,6 @@ class GameScene: SKScene {
         bullet3.zPosition = CGFloat(zvalue);
         addChild(bullet3)
         
-        var bul3 : Int!
-        bul3 = bQueue.queue.second
-        
-        bullQueue3Label = SKLabelNode(fontNamed: "Arial")
-        bullQueue3Label.text = String(bul3)
-        bullQueue3Label.fontSize = 2
-        bullQueue3Label.zPosition = CGFloat(zvalue + 2)
-        
-        
-        // Determine the font scaling factor that should let the label text fit in the given rectangle.
-        let scalingFactorB3 = min(bullQueue3Box.frame.width / bullQueue3Label.frame.width, bullQueue3Box.frame.height / bullQueue3Label.frame.height)
-        
-        // Change the fontSize.
-        bullQueue3Label.fontSize *= scalingFactorB3
-        
-        // Optionally move the SKLabelNode to the center of the rectangle.
-        bullQueue3Label.position = CGPoint(x: bullQueue3Box.frame.midX, y: bullQueue3Box.frame.midY - bullQueue3Label.frame.height / 2.0)
-        bullQueue3Label.zPosition = CGFloat(zvalue + 2);
-        addChild(bullQueue3Label)
         
         
         //////////Bullet 4/////////////
@@ -400,30 +320,59 @@ class GameScene: SKScene {
         bullet4.zPosition = CGFloat(zvalue);
         addChild(bullet4)
         
-        var bul4 : Int!
-        bul4 = bQueue.queue.front
-        
-        bullQueue4Label = SKLabelNode(fontNamed: "Arial")
-        bullQueue4Label.text = String(bul4)
-        bullQueue4Label.fontSize = 2
-        bullQueue4Label.zPosition = CGFloat(zvalue + 2)
-        
-        // Determine the font scaling factor that should let the label text fit in the given rectangle.
-        let scalingFactorB4 = min(bullQueue4Box.frame.width / bullQueue4Label.frame.width, bullQueue4Box.frame.height / bullQueue4Label.frame.height)
-        
-        // Change the fontSize.
-        bullQueue4Label.fontSize *= scalingFactorB4
-        
-        // Optionally move the SKLabelNode to the center of the rectangle.
-        bullQueue4Label.position = CGPoint(x: bullQueue4Box.frame.midX, y: bullQueue4Box.frame.midY - bullQueue4Label.frame.height / 2.0)
-        bullQueue4Label.zPosition = CGFloat(zvalue + 2);
-        addChild(bullQueue4Label)
-        
         //giving current bullet a name
         bullet4.name = "currentBullet"
         //////////Bullet 5/////////////
         
+        bulletQueueBoxes.append(bullQueue0Box)
+        bulletQueueBoxes.append(bullQueue1Box)
+        bulletQueueBoxes.append(bullQueue2Box)
+        bulletQueueBoxes.append(bullQueue3Box)
+        bulletQueueBoxes.append(bullQueue4Box)
         
+        bullQueue0Label = SKLabelNode(fontNamed: "Arial")
+        bullQueue1Label = SKLabelNode(fontNamed: "Arial")
+        bullQueue2Label = SKLabelNode(fontNamed: "Arial")
+        bullQueue3Label = SKLabelNode(fontNamed: "Arial")
+        bullQueue4Label = SKLabelNode(fontNamed: "Arial")
+        
+        bulletQueueLabels.append(bullQueue0Label)
+        bulletQueueLabels.append(bullQueue1Label)
+        bulletQueueLabels.append(bullQueue2Label)
+        bulletQueueLabels.append(bullQueue3Label)
+        bulletQueueLabels.append(bullQueue4Label)
+        
+        refreshBullets()
+    }
+    
+    
+    func refreshBullets() {
+        let zvalue = 2.0
+        
+        for i in 0 ..< 5 {
+            let bulletQueueBox    = bulletQueueBoxes[i]
+            let bulletQueueLabel = bulletQueueLabels[i]
+            let num       = String(bQueue.queue.getValue(4 - i))
+            
+            bulletQueueLabel.text = num
+            bulletQueueLabel.fontSize = 2
+            bulletQueueLabel.zPosition = CGFloat(zvalue + 2)
+            
+            let scalingFactorB4 = min(bulletQueueBox.frame.width / bulletQueueLabel.frame.width, bulletQueueBox.frame.height / bulletQueueLabel.frame.height)
+            
+            bulletQueueLabel.fontSize *= scalingFactorB4
+            
+            // Optionally move the SKLabelNode to the center of the rectangle.
+            bulletQueueLabel.position = CGPoint(x: bulletQueueBox.frame.midX, y: bulletQueueBox.frame.midY - bulletQueueLabel.frame.height / 2.0)
+            bulletQueueLabel.zPosition = CGFloat(zvalue + 2);
+            addChild(bulletQueueLabel)
+        }
+    }
+    
+    func clearBulletLabels() {
+        for i in 0 ..< 5 {
+            bulletQueueLabels[i].removeFromParent()
+        }
     }
     
     
@@ -635,6 +584,8 @@ class GameScene: SKScene {
                     
                     bQueue.generateNewBullet()
                     print(bQueue.queue)
+                    clearBulletLabels()
+                    refreshBullets()
                     
                     print("Score: \(score)")
                 } else if name == "plusGun" {
@@ -657,6 +608,8 @@ class GameScene: SKScene {
                     //remove first bullet and generate another one
                     bQueue.generateNewBullet()
                     print(bQueue.queue)
+                    clearBulletLabels()
+                    refreshBullets()
                 }
             }
         }
