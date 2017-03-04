@@ -172,6 +172,22 @@ class GameScene: SKScene {
         
         
 
+        waveNumberLabel = SKLabelNode(fontNamed: "Arial")
+        
+        waveNumberLabel.text = "Kills: 0"
+        waveNumberLabel.fontSize = 20
+        
+        // Determine the font scaling factor that should let the label text fit in the given rectangle.
+        scalingFactor = min(waveNumberBox.frame.width / waveNumberLabel.frame.width, waveNumberBox.frame.height / pauseButton.frame.height)
+        
+        // Change the fontSize.
+        waveNumberLabel.fontSize *= scalingFactor
+        
+        // Optionally move the SKLabelNode to the center of the rectangle.
+        waveNumberLabel.position = CGPoint(x: waveNumberBox.frame.midX, y: waveNumberBox.frame.midY - waveNumberLabel.frame.height / 2.0)
+        waveNumberLabel.zPosition = CGFloat(zvalue);
+        addChild(waveNumberLabel)
+        
         
         
         
@@ -193,7 +209,7 @@ class GameScene: SKScene {
         
         scoreDisplayLabel = SKLabelNode(fontNamed: "Arial")
         
-        scoreDisplayLabel.text = "Score: "
+        scoreDisplayLabel.text = "Score: 0"
         scoreDisplayLabel.fontSize = 20
         
         // Determine the font scaling factor that should let the label text fit in the given rectangle.
@@ -509,9 +525,10 @@ class GameScene: SKScene {
             //KILL ZOMBIE
             //add to score
             score += 5
+            scoreDisplayLabel.text = "Score: " + String(score)
             
             kills += 1
-            
+            waveNumberLabel.text = "Kills: " + String(kills)
             //remove from scene
             zombie.removeFromParent()
         }
