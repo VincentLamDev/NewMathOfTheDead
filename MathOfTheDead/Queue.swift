@@ -34,6 +34,26 @@ public struct Queue<T> {
     public var front: T! {
         return array.first
     }
+    
+    public func getValue(_ num: Int) -> T! {
+        return array[1]
+    }
+    
+    public var second: T! {
+        return array[1]
+    }
+    
+    public var third: T! {
+        return array[2]
+    }
+    
+    public var fourth: T! {
+        return array[3]
+    }
+    
+    public var fifth: T! {
+        return array[4]
+    }
 }
 
 public class BulletQueue {
