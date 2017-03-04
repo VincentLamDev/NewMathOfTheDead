@@ -86,18 +86,6 @@ class GameScene: SKScene {
         bgNode.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
         bgNode.setScale(1)
         bgNode.zPosition = CGFloat(1.0)
-        
-//        let tile = bgNode.tileSet.tileGroups.first(
-//            where: {$0.name == "DarkGrass"})
-        
-//        bgNode.fill(with: tile)
-//        for column in (0..4) {
-//            for row in 0..4 {
-//                bgNode.setTileGroup(tile, forColumn: column, row: row)
-//            }
-//        }
-        
-        //let bgNode = SKTileMapNode(tileSet: "darkGrass", columns: 5, rows: 5, tileSize: bgTexture.size(), fillWithTileGroup: tile)
 
         self.addChild(bgNode)
 
@@ -148,14 +136,15 @@ class GameScene: SKScene {
         pauseButton.fontSize = 3
         
         // Determine the font scaling factor that should let the label text fit in the given rectangle.
-        let scalingFactor = min(pauseButtonBox.frame.width / pauseButton.frame.width, pauseButtonBox.frame.height / pauseButton.frame.height)
+        var scalingFactor = min(pauseButtonBox.frame.width / pauseButton.frame.width, pauseButtonBox.frame.height / pauseButton.frame.height)
         
         // Change the fontSize.
         pauseButton.fontSize *= scalingFactor
         
         // Optionally move the SKLabelNode to the center of the rectangle.
-        pauseButton.position = CGPoint(x: pauseButtonBox.frame.midX, y: pauseButtonBox.frame.midY - pauseButton.frame.height / 2.0)
-        pauseButton.zPosition = CGFloat(zvalue);
+        var gap = (pauseButtonBox.frame.height - pauseButton.frame.height)/2
+        pauseButton.position = CGPoint(x: pauseButtonBox.frame.midX, y: (pauseButtonBox.frame.maxY - pauseButtonBox.frame.height/2) - gap/2)
+        pauseButton.zPosition = CGFloat(zvalue)
         addChild(pauseButton)
         
         xPos = xPos + menuWidth
@@ -170,6 +159,24 @@ class GameScene: SKScene {
         waveNumberBox.lineWidth = frame.size.width * 0.01
         waveNumberBox.zPosition = CGFloat(zvalue);
         addChild(waveNumberBox)
+
+        waveNumberLabel = SKLabelNode(fontNamed: "Arial")
+        
+        waveNumberLabel.text = "Kills: 0"
+        waveNumberLabel.fontSize = 20
+        
+        // Determine the font scaling factor that should let the label text fit in the given rectangle.
+        scalingFactor = min(waveNumberBox.frame.width / waveNumberLabel.frame.width, waveNumberBox.frame.height / pauseButton.frame.height)
+        
+        // Change the fontSize.
+        waveNumberLabel.fontSize *= scalingFactor
+        
+        // Optionally move the SKLabelNode to the center of the rectangle.
+        waveNumberLabel.position = CGPoint(x: waveNumberBox.frame.midX, y: waveNumberBox.frame.midY - waveNumberLabel.frame.height / 2.0)
+        waveNumberLabel.zPosition = CGFloat(zvalue);
+        addChild(waveNumberLabel)
+        
+        
         
         
         xPos = xPos + menuWidth
@@ -184,6 +191,27 @@ class GameScene: SKScene {
         scoreDisplayBox.lineWidth = frame.size.width * 0.01
         scoreDisplayBox.zPosition = CGFloat(zvalue);
         addChild(scoreDisplayBox)
+        
+        
+        
+        
+        scoreDisplayLabel = SKLabelNode(fontNamed: "Arial")
+        
+        scoreDisplayLabel.text = "Score: 0"
+        scoreDisplayLabel.fontSize = 20
+        
+        // Determine the font scaling factor that should let the label text fit in the given rectangle.
+        scalingFactor = min(scoreDisplayBox.frame.width / scoreDisplayLabel.frame.width, scoreDisplayBox.frame.height / pauseButton.frame.height)
+        
+        // Change the fontSize.
+        scoreDisplayLabel.fontSize *= scalingFactor
+        
+        // Optionally move the SKLabelNode to the center of the rectangle.
+        scoreDisplayLabel.position = CGPoint(x: scoreDisplayBox.frame.midX, y: scoreDisplayBox.frame.midY - scoreDisplayLabel.frame.height / 2.0)
+        scoreDisplayLabel.zPosition = CGFloat(zvalue);
+        addChild(scoreDisplayLabel)
+
+        
         
     }
     
@@ -554,9 +582,10 @@ class GameScene: SKScene {
             //KILL ZOMBIE
             //add to score
             score += 5
+            scoreDisplayLabel.text = "Score: " + String(score)
             
             kills += 1
-            
+            waveNumberLabel.text = "Kills: " + String(kills)
             //remove from scene
             zombie.removeFromParent()
         }
