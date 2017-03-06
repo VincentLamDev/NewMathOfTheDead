@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MathOfTheDead/GameScene.swift"
-            timestampString = "510278497.001344"
+            timestampString = "510282485.994909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "470"
-            endingLineNumber = "470"
+            startingLineNumber = "419"
+            endingLineNumber = "419"
             landmarkName = "addingGuns(zvalue:)"
             landmarkType = "7">
          </BreakpointContent>
