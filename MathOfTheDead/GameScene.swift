@@ -107,7 +107,7 @@ class GameScene: SKScene {
         run(SKAction.repeatForever(
             SKAction.sequence([
                 SKAction.run(addZombie),
-                SKAction.wait(forDuration: 4.0)
+                SKAction.wait(forDuration: 5.0)
                 ])
         ))
     }
@@ -558,11 +558,20 @@ class GameScene: SKScene {
     
     func diviOperation(_ healthNode: SKLabelNode) {
         var health = Int(healthNode.text!)!
-        if(bQueue.queue.front == 0) {
+        let curBullet = Int(bQueue.queue.front!)
+        
+        print("OG Health: \(health)")
+        
+        print("Operation: \(health) / \(curBullet)")
+        
+        if(abs(curBullet) > abs(health)) {
             health /= 1
+        } else if (abs(curBullet) <= abs(health)) {
+            health = Int(health/curBullet)
         }
-        print(bQueue.queue.front)
-        health /= bQueue.queue.front
+        
+        print("Health After: \(health)")
+        
         healthNode.text = String(health)
     }
     
@@ -596,7 +605,7 @@ class GameScene: SKScene {
         checkMaxHealth(maxHealthNode, healthNode)
         
         if(Int(healthNode.text!)! == 0) {
-            var maxHealth = Int(maxHealthNode.text!)!
+            let maxHealth = Int(maxHealthNode.text!)!
             
             //KILL ZOMBIE
             //add to score
@@ -675,7 +684,7 @@ class GameScene: SKScene {
         // Create sprite
         let zombie = SKSpriteNode(imageNamed: "zombie")
         let aspectRatio = zombie.size.width/zombie.size.height
-        let zombieWidth = frame.width/4
+        let zombieWidth = frame.width/5
         zombie.size = CGSize(width: zombieWidth, height: zombieWidth/aspectRatio)
         
         // Create zombie health
@@ -712,7 +721,7 @@ class GameScene: SKScene {
         
         // Determine speed of the monster
         //    let actualDuration = random(min: CGFloat(2.0), max: CGFloat(4.0))
-        let actualDuration = CGFloat(15.0)
+        let actualDuration = CGFloat(27.0)
         
         // Create the actions
         let gameOverLine = frame.minY + plusGun.size.height + plusGun.size.height * 0.25 + zombie.size.height/2
