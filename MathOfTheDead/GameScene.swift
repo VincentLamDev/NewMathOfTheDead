@@ -697,7 +697,7 @@ class GameScene: SKScene {
 
         let loseAction = SKAction.run() {
             let reveal = SKTransition.flipVertical(withDuration: 0.5)
-            let gameOverScene = GameOverScene(size: self.size, won: false)
+            let gameOverScene = GameOverScene(size: self.size, won: false, score: self.score, wave: self.kills)
             self.view?.presentScene(gameOverScene, transition: reveal)
         }
 

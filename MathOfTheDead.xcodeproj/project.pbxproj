@@ -16,6 +16,7 @@
 		84DC26331E48654000BFA266 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84DC26321E48654000BFA266 /* Assets.xcassets */; };
 		84DC26361E48654000BFA266 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84DC26341E48654000BFA266 /* LaunchScreen.storyboard */; };
 		84DC263E1E48672300BFA266 /* BackgroundTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84DC263D1E48672300BFA266 /* BackgroundTileSet.sks */; };
+		BF4B09311E6E159F0045C317 /* HomeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4B09301E6E159F0045C317 /* HomeScene.swift */; };
 		BFB39D251E69F8DF00130D74 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB39D241E69F8DF00130D74 /* GameOverScene.swift */; };
 		BFB39D271E6A028100130D74 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84DC26271E48654000BFA266 /* GameScene.sks */; };
 /* End PBXBuildFile section */
@@ -33,6 +34,7 @@
 		84DC26351E48654000BFA266 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84DC26371E48654000BFA266 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84DC263D1E48672300BFA266 /* BackgroundTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BackgroundTileSet.sks; sourceTree = "<group>"; };
+		BF4B09301E6E159F0045C317 /* HomeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScene.swift; sourceTree = "<group>"; };
 		BFB39D241E69F8DF00130D74 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +80,7 @@
 				84DC26341E48654000BFA266 /* LaunchScreen.storyboard */,
 				84DC26371E48654000BFA266 /* Info.plist */,
 				BFB39D241E69F8DF00130D74 /* GameOverScene.swift */,
+				BF4B09301E6E159F0045C317 /* HomeScene.swift */,
 			);
 			path = MathOfTheDead;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 				BFB39D251E69F8DF00130D74 /* GameOverScene.swift in Sources */,
 				84DC262C1E48654000BFA266 /* GameScene.swift in Sources */,
 				84DC262E1E48654000BFA266 /* GameViewController.swift in Sources */,
+				BF4B09311E6E159F0045C317 /* HomeScene.swift in Sources */,
 				84DC26261E48654000BFA266 /* AppDelegate.swift in Sources */,
 				6BBE3C241E4E9740001646E9 /* Queue.swift in Sources */,
 			);
