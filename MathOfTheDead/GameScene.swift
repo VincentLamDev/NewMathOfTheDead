@@ -24,6 +24,7 @@ class GameScene: SKScene {
     var gradientLayer: CAGradientLayer!
     
     var zombieHealth : SKLabelNode!
+    var zombieMaxHealth : SKLabelNode!
     
     var plusGun:SKSpriteNode!
     var diviGun:SKSpriteNode!
@@ -565,8 +566,19 @@ class GameScene: SKScene {
         healthNode.text = String(health)
     }
     
-    func shootZombie(_ zombie: SKSpriteNode, _ healthNode: SKLabelNode) {
-        var killed : Bool = false
+    func checkMaxHealth(_ maxHealthNode: SKLabelNode, _ healthNode: SKLabelNode) {
+        var maxHealth = Int(maxHealthNode.text!)!
+        let health = Int(healthNode.text!)!
+        
+        if(health > maxHealth) {
+            maxHealth = health;
+        }
+        
+        maxHealthNode.text = String(maxHealth)
+    }
+
+    
+    func shootZombie(_ zombie: SKSpriteNode, _ healthNode: SKLabelNode, _ maxHealthNode: SKLabelNode) {
         
         switch currentGun {
         case "plus":
@@ -581,10 +593,14 @@ class GameScene: SKScene {
             print("error")
         }
         
+        checkMaxHealth(maxHealthNode, healthNode)
+        
         if(Int(healthNode.text!)! == 0) {
+            var maxHealth = Int(maxHealthNode.text!)!
+            
             //KILL ZOMBIE
             //add to score
-            score += 5
+            score += maxHealth
             scoreDisplayLabel.text = "Score: " + String(score)
             
             kills += 1
@@ -611,8 +627,11 @@ class GameScene: SKScene {
                 if name == "zombie" {
                     //get health of zombie
                     let healthNode = touchedNode.childNode(withName: "health") as! SKLabelNode
+                    let maxHealthNode = touchedNode.childNode(withName: "maxHealth") as! SKLabelNode
                     
-                    shootZombie(touchedNode as! SKSpriteNode, healthNode)
+                    print(maxHealthNode)
+                    
+                    shootZombie(touchedNode as! SKSpriteNode, healthNode, maxHealthNode)
                     
                     bQueue.generateNewBullet()
                     print(bQueue.queue)
@@ -667,6 +686,11 @@ class GameScene: SKScene {
         zombieHealth.fontSize = 50
         zombieHealth.text = String(healthNum)
         
+        //max health
+        zombieMaxHealth = SKLabelNode()
+        zombieMaxHealth.fontSize = 0
+        zombieMaxHealth.text = String(healthNum)
+        
         // Determine where to spawn the monster along the Y axis
         
         // Determining min x value to spawn zombie
@@ -684,6 +708,7 @@ class GameScene: SKScene {
         // Add the monster to the scene
         addChild(zombie)
         zombie.addChild(zombieHealth)
+        zombie.addChild(zombieMaxHealth)
         
         // Determine speed of the monster
         //    let actualDuration = random(min: CGFloat(2.0), max: CGFloat(4.0))
@@ -711,6 +736,7 @@ class GameScene: SKScene {
         //setting name for tap detection
         zombie.name = "zombie"
         zombieHealth.name = "health"
+        zombieMaxHealth.name = "maxHealth"
     }
     
 }
