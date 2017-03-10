@@ -364,6 +364,9 @@ class GameScene: SKScene {
         bullQueue3Label = SKLabelNode(fontNamed: "Arial")
         bullQueue4Label = SKLabelNode(fontNamed: "Arial")
         
+        bullQueue0Label.name = "currentBullet"
+        bullQueue0Box.name = "currentBullet"
+        
         bulletQueueLabels.append(bullQueue0Label)
         bulletQueueLabels.append(bullQueue1Label)
         bulletQueueLabels.append(bullQueue2Label)
@@ -391,7 +394,7 @@ class GameScene: SKScene {
             bulletQueueLabel.fontSize *= scalingFactorB4
             
             // Optionally move the SKLabelNode to the center of the rectangle.
-            bulletQueueLabel.position = CGPoint(x: bulletQueueBox.frame.midX, y: bulletQueueBox.frame.midY - bulletQueueLabel.frame.height / 2.0)
+            bulletQueueLabel.position = CGPoint(x: bulletQueueBox.frame.midX - 25, y: bulletQueueBox.frame.midY - bulletQueueLabel.frame.height / 2.0)
             bulletQueueLabel.zPosition = CGFloat(zvalue + 2);
             addChild(bulletQueueLabel)
         }
