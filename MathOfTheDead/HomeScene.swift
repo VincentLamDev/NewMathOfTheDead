@@ -66,7 +66,7 @@ class HomeScene: SKScene {
         startBox = SKShapeNode()
         let btnWidth = self.frame.width/2
         let btnHeight = self.frame.height/10
-        var xPos = self.frame.minX + self.frame.width/4
+        let xPos = self.frame.minX + self.frame.width/4
         var yPos = self.frame.maxY * 0.6
         startBox.path = UIBezierPath(roundedRect: CGRect(x: xPos,
                                                            y: yPos,

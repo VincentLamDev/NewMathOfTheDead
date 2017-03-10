@@ -143,7 +143,7 @@ class GameScene: SKScene {
         pauseButton.fontSize *= scalingFactor
         
         // Optionally move the SKLabelNode to the center of the rectangle.
-        var gap = (pauseButtonBox.frame.height - pauseButton.frame.height)/2
+        let gap = (pauseButtonBox.frame.height - pauseButton.frame.height)/2
         pauseButton.position = CGPoint(x: pauseButtonBox.frame.midX, y: (pauseButtonBox.frame.maxY - pauseButtonBox.frame.height/2) - gap/2)
         pauseButton.zPosition = CGFloat(zvalue)
         addChild(pauseButton)
@@ -155,7 +155,7 @@ class GameScene: SKScene {
                                                               y: yPos,
                                                               width: menuWidth,
                                                               height: menuHeight), cornerRadius: 0).cgPath
-        waveNumberBox.fillColor = UIColor.red
+        waveNumberBox.fillColor = UIColor.gray
         waveNumberBox.strokeColor = UIColor.black
         waveNumberBox.lineWidth = frame.size.width * 0.01
         waveNumberBox.zPosition = CGFloat(zvalue);
@@ -187,7 +187,7 @@ class GameScene: SKScene {
                                                                 y: yPos,
                                                                 width: menuWidth,
                                                                 height: menuHeight), cornerRadius: 0).cgPath
-        scoreDisplayBox.fillColor = UIColor.red
+        scoreDisplayBox.fillColor = UIColor.gray
         scoreDisplayBox.strokeColor = UIColor.black
         scoreDisplayBox.lineWidth = frame.size.width * 0.01
         scoreDisplayBox.zPosition = CGFloat(zvalue);
@@ -239,7 +239,7 @@ class GameScene: SKScene {
         
         
         
-        var bullet0 = SKSpriteNode(imageNamed: "bullet");
+        let bullet0 = SKSpriteNode(imageNamed: "bullet");
         var aspectRatio = bullet0.size.width/bullet0.size.height
         bullet0.size = CGSize(width: bullQueue0Box.frame.width, height: bullQueue0Box.frame.width/aspectRatio)
         
@@ -265,7 +265,7 @@ class GameScene: SKScene {
         addChild(bullQueue1Box)
         
         
-        var bullet1 = SKSpriteNode(imageNamed: "bullet");
+        let bullet1 = SKSpriteNode(imageNamed: "bullet");
         aspectRatio = bullet1.size.width/bullet1.size.height
         bullet1.size = CGSize(width: bullQueue1Box.frame.width, height: bullQueue0Box.frame.width/aspectRatio)
         
@@ -290,7 +290,7 @@ class GameScene: SKScene {
         bullQueue2Box.zPosition = CGFloat(zvalue);
         addChild(bullQueue2Box)
         
-        var bullet2 = SKSpriteNode(imageNamed: "bullet");
+        let bullet2 = SKSpriteNode(imageNamed: "bullet");
         aspectRatio = bullet2.size.width/bullet2.size.height
         bullet2.size = CGSize(width: bullQueue2Box.frame.width, height: bullQueue2Box.frame.width/aspectRatio)
         
@@ -314,7 +314,7 @@ class GameScene: SKScene {
         bullQueue3Box.zPosition = CGFloat(zvalue);
         addChild(bullQueue3Box)
         
-        var bullet3 = SKSpriteNode(imageNamed: "bullet");
+        let bullet3 = SKSpriteNode(imageNamed: "bullet");
         aspectRatio = bullet3.size.width/bullet3.size.height
         bullet3.size = CGSize(width: bullQueue3Box.frame.width, height: bullQueue3Box.frame.width/aspectRatio)
         
@@ -335,13 +335,13 @@ class GameScene: SKScene {
                                                               y: yPos,
                                                               width: frame.width * 0.25,
                                                               height: queueHeight * 1.5), cornerRadius: 0).cgPath
-        bullQueue4Box.fillColor = UIColor.gray
+        bullQueue4Box.fillColor = UIColor.red
         bullQueue4Box.strokeColor = UIColor.black
         bullQueue4Box.lineWidth = frame.size.width * 0.01
         bullQueue4Box.zPosition = CGFloat(zvalue);
         addChild(bullQueue4Box)
         
-        var bullet4 = SKSpriteNode(imageNamed: "bullet");
+        let bullet4 = SKSpriteNode(imageNamed: "bullet");
         aspectRatio = bullet4.size.width/bullet4.size.height
         bullet4.size = CGSize(width: bullQueue4Box.frame.width, height: bullQueue4Box.frame.width/aspectRatio)
         
@@ -424,7 +424,7 @@ class GameScene: SKScene {
                                                            y: yPos - plusGun.size.height/2,
                                                            width: plusGun.size.width,
                                                            height: plusGun.size.width), cornerRadius: 0).cgPath
-        plusGunBox.fillColor = UIColor.red
+        plusGunBox.fillColor = UIColor.gray
         plusGunBox.strokeColor = UIColor.black
         plusGunBox.lineWidth = frame.size.width * 0.01
         plusGunBox.zPosition = CGFloat(zvalue);
@@ -649,15 +649,19 @@ class GameScene: SKScene {
                     
                     print("Score: \(score)")
                 } else if name == "plusGun" {
+                    changeGunBoxColour("plus")
                     currentGun = "plus"
                     print("plus")
                 } else if name == "minusGun" {
+                    changeGunBoxColour("minus")
                     currentGun = "minus"
                     print("minus")
                 } else if  name == "multiGun" {
+                    changeGunBoxColour("multi")
                     currentGun = "multi"
                     print("multi")
                 } else if  name == "diviGun" {
+                    changeGunBoxColour("divi")
                     currentGun = "divi"
                     print("divi")
                 
@@ -674,6 +678,28 @@ class GameScene: SKScene {
             }
         }
     }
+    
+    
+    func changeGunBoxColour(_ gun: String) {
+        plusGunBox.fillColor = UIColor.red
+        minusGunBox.fillColor = UIColor.red
+        multiGunBox.fillColor = UIColor.red
+        diviGunBox.fillColor = UIColor.red
+        
+        switch gun {
+        case "plus":
+            plusGunBox.fillColor = UIColor.gray
+        case "minus":
+            minusGunBox.fillColor = UIColor.gray
+        case "multi":
+            multiGunBox.fillColor = UIColor.gray
+        case "divi":
+            diviGunBox.fillColor = UIColor.gray
+        default:
+            print("error")
+        }
+    }
+    
     // Generates a random number between -10 and 10 to represent zombie health
 //    func randomZombieHealth(){
 //        let health = Int(arc4random_uniform(11) + 1)
