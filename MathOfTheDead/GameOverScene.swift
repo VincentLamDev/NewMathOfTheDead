@@ -16,53 +16,52 @@ class GameOverScene: SKScene {
     var restartLabel: SKLabelNode!
     var mainMenuBox: SKShapeNode!
     var mainMenuLabel: SKLabelNode!
-    
+    var size1: CGSize!
     
     init(size: CGSize, won:Bool, score: Int, wave: Int) {
         
         super.init(size: size)
-        
-        //background grass tile map
-        let bgTexture = SKTexture(imageNamed: "dark-grass")
-        let bgDefinition = SKTileDefinition(texture: bgTexture, size: bgTexture.size())
-        let bgGroup = SKTileGroup(tileDefinition: bgDefinition)
-        let tileSet = SKTileSet(tileGroups: [bgGroup])
-        let bgNode = SKTileMapNode(tileSet: tileSet, columns: 4, rows: 8, tileSize: bgTexture.size(), fillWith: bgGroup)
-        bgNode.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
-        bgNode.setScale(1)
-        self.addChild(bgNode)
-        
+        self.size1 = size
+
         run(SKAction.playSoundFileNamed("playerDie.mp3",waitForCompletion:false))
         
         //Game over label
-        let message = "GAME OVER"
-        let label = SKLabelNode(fontNamed: "Chalkduster")
+        let message = "YOU"
+        let label = SKLabelNode(fontNamed: "Nosifer-Regular")
         label.text = message
         label.fontSize = 80
-        label.fontColor = SKColor.white
+        label.fontColor = SKColor.red
+        var scalefactor = min((self.frame.width * 0.85) / label.frame.width, (self.frame.height * 0.10) / label.frame.height)
+        label.fontSize *= scalefactor
         label.position = CGPoint(x: self.frame.midX, y: self.frame.maxY - label.frame.height)
         addChild(label)
         
+        let message2 = "DIED"
+        let label2 = SKLabelNode(fontNamed: "Nosifer-Regular")
+        label2.text = message2
+        label2.fontSize = label.fontSize
+        label2.fontColor = SKColor.red
+        label2.position = CGPoint(x: self.frame.midX, y: self.frame.maxY - label.frame.height * 2)
+        addChild(label2)
         
-        
+      
         //Displaying player score
-        let scorelabel = SKLabelNode(fontNamed: "Arial")
+        let scorelabel = SKLabelNode(fontNamed: "Nosifer-Regular")
         scorelabel.text = "Score: " + String(score)
         scorelabel.fontSize = 20
-        let scoreLabelScaleFactor = min((self.frame.width * 0.7) / scorelabel.frame.width, (self.frame.height * 0.15) / scorelabel.frame.height)
-        scorelabel.fontSize *= scoreLabelScaleFactor
-        scorelabel.position = CGPoint(x: self.frame.midX, y: self.frame.maxY * 0.75)
+        scalefactor = min((self.frame.width * 0.6) / scorelabel.frame.width, (self.frame.height * 0.15) / scorelabel.frame.height)
+        scorelabel.fontSize *= scalefactor
+        scorelabel.position = CGPoint(x: self.frame.midX, y: self.frame.maxY * 0.65)
         addChild(scorelabel)
-
+        
         //Displaying player kills
-        let killslabel = SKLabelNode(fontNamed: "Arial")
+        let killslabel = SKLabelNode(fontNamed: "Nosifer-Regular")
         killslabel.text = "Kills: " + String(wave)
-        killslabel.fontSize = 20
-        let killLabelScaleFactor = min((self.frame.width * 0.55) / killslabel.frame.width, (self.frame.height * 0.15) / killslabel.frame.height)
-        killslabel.fontSize *= killLabelScaleFactor
-        killslabel.position = CGPoint(x: self.frame.midX, y: self.frame.maxY * 0.6)
+        killslabel.fontSize = scorelabel.fontSize
+        killslabel.position = CGPoint(x: self.frame.midX, y: self.frame.maxY * 0.55)
         addChild(killslabel)
-
+        
+  
         
         
         //Restart game button
@@ -70,7 +69,7 @@ class GameOverScene: SKScene {
         let btnWidth = self.frame.width/2
         let btnHeight = self.frame.height/10
         let xPos = self.frame.minX + self.frame.width/4
-        var yPos = self.frame.maxY * 0.4
+        var yPos = self.frame.maxY * 0.35
         restartBox.path = UIBezierPath(roundedRect: CGRect(x: xPos,
                                                               y: yPos,
                                                               width: btnWidth,
@@ -82,18 +81,19 @@ class GameOverScene: SKScene {
         
         
         //Restart button label
-        restartLabel = SKLabelNode(fontNamed: "Arial")
+        restartLabel = SKLabelNode(fontNamed: "AvenirNext-Bold")
         restartLabel.text = "Restart"
         restartLabel.fontSize = 20
         var scalingFactor = min(restartBox.frame.width / restartLabel.frame.width, restartBox.frame.height / restartLabel.frame.height)
         restartLabel.fontSize *= (scalingFactor * 0.5)
         restartLabel.position = CGPoint(x: restartBox.frame.midX, y: restartBox.frame.midY - restartLabel.frame.height / 2.0)
+        restartLabel.name = "restart"
         addChild(restartLabel)
         
         
         //Return to main menu button
         mainMenuBox = SKShapeNode()
-        yPos = self.frame.maxY * 0.2
+        yPos = self.frame.maxY * 0.15
         mainMenuBox.path = UIBezierPath(roundedRect: CGRect(x: xPos,
                                                            y: yPos,
                                                            width: btnWidth,
@@ -101,6 +101,7 @@ class GameOverScene: SKScene {
         mainMenuBox.fillColor = UIColor.red
         mainMenuBox.strokeColor = UIColor.black
         mainMenuBox.lineWidth = frame.size.width * 0.01
+        mainMenuBox.name = "menu"
         addChild(mainMenuBox)
         
         
@@ -112,19 +113,7 @@ class GameOverScene: SKScene {
         mainMenuLabel.fontSize *= (scalingFactor * 0.7)
         mainMenuLabel.position = CGPoint(x: mainMenuBox.frame.midX, y: mainMenuBox.frame.midY - mainMenuLabel.frame.height / 2.0)
         addChild(mainMenuLabel)
-        
-
-        run(SKAction.sequence([
-            SKAction.wait(forDuration: 3.0),
-            SKAction.run() {
-                // 5
-                
-                let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-                let scene = GameScene(size: size)
-                scene.reloadInputViews()
-                self.view?.presentScene(scene, transition:reveal)
-            }
-            ]))
+    
         
     }
     
@@ -132,4 +121,41 @@ class GameOverScene: SKScene {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch:UITouch = touches.first!
+        let positionInScene = touch.location(in: self)
+        let touchedNode = self.atPoint(positionInScene)
+        
+        if let name = touchedNode.name
+        {
+            if name == "restart" {
+                run(SKAction.sequence([
+                    SKAction.wait(forDuration: 0.0),
+                    SKAction.run() {
+                        // 5
+                        
+                        let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+                        let scene = GameScene(size: self.size1)
+                        scene.reloadInputViews()
+                        self.view?.presentScene(scene, transition:reveal)
+                    }
+                    ]))
+            }
+            if name == "menu" {
+                run(SKAction.sequence([
+                    SKAction.wait(forDuration: 0.0),
+                    SKAction.run() {
+                        // 5
+                        
+                        let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+                        let scene = HomeScene(size: self.size1)
+                        scene.reloadInputViews()
+                        self.view?.presentScene(scene, transition:reveal)
+                    }
+                    ]))
+            }
+        }
+    }
+
 }

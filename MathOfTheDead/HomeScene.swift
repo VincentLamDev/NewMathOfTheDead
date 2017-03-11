@@ -18,13 +18,15 @@ class HomeScene: SKScene {
     var leaderboardLabel: SKLabelNode!
     var settingsBox: SKShapeNode!
     var settingsLabel: SKLabelNode!
-    
+    var size1: CGSize!
+
     var backgroundMusic: SKAudioNode!
     
-    init(size: CGSize, won:Bool, score: Int, wave: Int) {
+    override init(size: CGSize) {
         
         super.init(size: size)
-                
+        self.size1 = size
+        
         if let musicURL = Bundle.main.url(forResource: "MichaelMyers", withExtension: "mp3") {
             backgroundMusic = SKAudioNode(url: musicURL)
             addChild(backgroundMusic)
@@ -46,7 +48,7 @@ class HomeScene: SKScene {
         
         
         //Game over label
-        let label1 = SKLabelNode(fontNamed: "Chalkduster")
+        let label1 = SKLabelNode(fontNamed: "Nosifer-Regular")
         label1.text = "MATH OF"
         label1.fontSize = 80
         label1.fontColor = SKColor.red
@@ -55,7 +57,7 @@ class HomeScene: SKScene {
         label1.position = CGPoint(x: self.frame.midX, y: self.frame.maxY - label1.frame.height * 1.10)
         addChild(label1)
         
-        let label2 = SKLabelNode(fontNamed: "Chalkduster")
+        let label2 = SKLabelNode(fontNamed: "Nosifer-Regular")
         label2.text = "THE DEAD"
         label2.fontSize = 80
         label2.fontColor = SKColor.red
@@ -63,9 +65,7 @@ class HomeScene: SKScene {
         label2.fontSize *= scalingFactor
         label2.position = CGPoint(x: self.frame.midX, y: self.frame.maxY - label1.frame.height * 2 )
         addChild(label2)
-        
-        
-        
+    
         
         
         //Start game button
@@ -75,22 +75,24 @@ class HomeScene: SKScene {
         let xPos = self.frame.minX + self.frame.width/4
         var yPos = self.frame.maxY * 0.6
         startBox.path = UIBezierPath(roundedRect: CGRect(x: xPos,
-                                                           y: yPos,
-                                                           width: btnWidth,
-                                                           height: btnHeight), cornerRadius: 0).cgPath
+                                                         y: yPos,
+                                                         width: btnWidth,
+                                                         height: btnHeight), cornerRadius: 0).cgPath
         startBox.fillColor = UIColor.red
         startBox.strokeColor = UIColor.black
         startBox.lineWidth = frame.size.width * 0.01
+        startBox.name = "start"
         addChild(startBox)
         
         
         //Start button label
-        startLabel = SKLabelNode(fontNamed: "Arial")
-        startLabel.text = "Restart"
+        startLabel = SKLabelNode(fontNamed: "AvenirNext-Bold")
+        startLabel.text = "Start"
         startLabel.fontSize = 20
         scalingFactor = min(startBox.frame.width / startLabel.frame.width, startBox.frame.height / startLabel.frame.height)
         startLabel.fontSize *= (scalingFactor * 0.4)
         startLabel.position = CGPoint(x: startBox.frame.midX, y: startBox.frame.midY - startLabel.frame.height / 2.0)
+        startLabel.name = "start"
         addChild(startLabel)
         
         
@@ -98,9 +100,9 @@ class HomeScene: SKScene {
         leaderboardBox = SKShapeNode()
         yPos = self.frame.maxY * 0.4
         leaderboardBox.path = UIBezierPath(roundedRect: CGRect(x: xPos,
-                                                            y: yPos,
-                                                            width: btnWidth,
-                                                            height: btnHeight), cornerRadius: 0).cgPath
+                                                               y: yPos,
+                                                               width: btnWidth,
+                                                               height: btnHeight), cornerRadius: 0).cgPath
         leaderboardBox.fillColor = UIColor.red
         leaderboardBox.strokeColor = UIColor.black
         leaderboardBox.lineWidth = frame.size.width * 0.01
@@ -108,7 +110,7 @@ class HomeScene: SKScene {
         
         
         //Leaderboard button label
-        leaderboardLabel = SKLabelNode(fontNamed: "Arial")
+        leaderboardLabel = SKLabelNode(fontNamed: "AvenirNext-Bold")
         leaderboardLabel.text = "High Scores"
         leaderboardLabel.fontSize = 20
         scalingFactor = min(leaderboardBox.frame.width / leaderboardLabel.frame.width, leaderboardBox.frame.height / leaderboardLabel.frame.height)
@@ -121,9 +123,9 @@ class HomeScene: SKScene {
         settingsBox = SKShapeNode()
         yPos = self.frame.maxY * 0.2
         settingsBox.path = UIBezierPath(roundedRect: CGRect(x: xPos,
-                                                               y: yPos,
-                                                               width: btnWidth,
-                                                               height: btnHeight), cornerRadius: 0).cgPath
+                                                            y: yPos,
+                                                            width: btnWidth,
+                                                            height: btnHeight), cornerRadius: 0).cgPath
         settingsBox.fillColor = UIColor.red
         settingsBox.strokeColor = UIColor.black
         settingsBox.lineWidth = frame.size.width * 0.01
@@ -131,32 +133,54 @@ class HomeScene: SKScene {
         
         
         //Settings button label
-        settingsLabel = SKLabelNode(fontNamed: "Arial")
-        settingsLabel.text = "High Scores"
+        settingsLabel = SKLabelNode(fontNamed: "AvenirNext-Bold")
+        settingsLabel.text = "Settings"
         settingsLabel.fontSize = 20
         scalingFactor = min(settingsBox.frame.width / settingsLabel.frame.width, settingsBox.frame.height / settingsLabel.frame.height)
         settingsLabel.fontSize *= (scalingFactor * 0.7)
         settingsLabel.position = CGPoint(x: leaderboardBox.frame.midX, y: settingsBox.frame.midY - settingsLabel.frame.height / 2.0)
         addChild(settingsLabel)
-        
-        
-        
-        run(SKAction.sequence([
-            SKAction.wait(forDuration: 3.0),
-            SKAction.run() {
-                // 5
-                
-                let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-                let scene = GameScene(size: size)
-                scene.reloadInputViews()
-                self.view?.presentScene(scene, transition:reveal)
-            }
-            ]))
-        
     }
     
     // 6
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch:UITouch = touches.first!
+        let positionInScene = touch.location(in: self)
+        let touchedNode = self.atPoint(positionInScene)
+        
+        if let name = touchedNode.name
+        {
+            if name == "start" {
+                run(SKAction.sequence([
+                    SKAction.wait(forDuration: 0.0),
+                    SKAction.run() {
+                        // 5
+                        
+                        let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+                        let scene = GameScene(size: self.size1)
+                        scene.reloadInputViews()
+                        self.view?.presentScene(scene, transition:reveal)
+                    }
+                    ]))
+            }
+            if name == "menu" {
+                run(SKAction.sequence([
+                    SKAction.wait(forDuration: 0.0),
+                    SKAction.run() {
+                        // 5
+                        
+                        let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+                        let scene = GameScene(size: self.size1)
+                        scene.reloadInputViews()
+                        self.view?.presentScene(scene, transition:reveal)
+                    }
+                    ]))
+            }
+        }
+    }
+
 }
