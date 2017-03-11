@@ -19,10 +19,16 @@ class HomeScene: SKScene {
     var settingsBox: SKShapeNode!
     var settingsLabel: SKLabelNode!
     
+    var backgroundMusic: SKAudioNode!
     
     init(size: CGSize, won:Bool, score: Int, wave: Int) {
         
         super.init(size: size)
+                
+        if let musicURL = Bundle.main.url(forResource: "MichaelMyers", withExtension: "mp3") {
+            backgroundMusic = SKAudioNode(url: musicURL)
+            addChild(backgroundMusic)
+        }
         
         //background grass tile map
         let bgTexture = SKTexture(imageNamed: "dark-grass")

@@ -32,7 +32,7 @@ class GameOverScene: SKScene {
         bgNode.setScale(1)
         self.addChild(bgNode)
         
-        
+        run(SKAction.playSoundFileNamed("playerDie.mp3",waitForCompletion:false))
         
         //Game over label
         let message = "GAME OVER"

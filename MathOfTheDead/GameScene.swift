@@ -6,6 +6,7 @@
 //  Copyright © 2017 Rachel Shellborn. All rights reserved.
 //
 import SpriteKit
+import AVFoundation
 
 class GameScene: SKScene {
     //bullet queue numbers
@@ -72,9 +73,13 @@ class GameScene: SKScene {
     var zombieAnimation: SKAction!
     
     
-    
+    var backgroundMusic: SKAudioNode!
     
     override func didMove(to view: SKView) {
+        if let musicURL = Bundle.main.url(forResource: "BroForce", withExtension: "mp3") {
+            backgroundMusic = SKAudioNode(url: musicURL)
+            addChild(backgroundMusic)
+        }
         
         let bgTexture = SKTexture(imageNamed: "dark-grass")
         let bgDefinition = SKTileDefinition(texture: bgTexture, size: bgTexture.size())
@@ -588,6 +593,7 @@ class GameScene: SKScene {
 
     
     func shootZombie(_ zombie: SKSpriteNode, _ healthNode: SKLabelNode, _ maxHealthNode: SKLabelNode) {
+        run(SKAction.playSoundFileNamed("shot.mp3",waitForCompletion:false))
         
         switch currentGun {
         case "plus":
@@ -604,8 +610,11 @@ class GameScene: SKScene {
         
         checkMaxHealth(maxHealthNode, healthNode)
         
+        //zombie died
         if(Int(healthNode.text!)! == 0) {
             let maxHealth = Int(maxHealthNode.text!)!
+            
+            run(SKAction.playSoundFileNamed("zDie.mp3",waitForCompletion:false))
             
             //KILL ZOMBIE
             //add to score
@@ -616,6 +625,8 @@ class GameScene: SKScene {
             waveNumberLabel.text = "Kills: " + String(kills)
             //remove from scene
             zombie.removeFromParent()
+        } else {
+            run(SKAction.playSoundFileNamed("zStillAlive.mp3",waitForCompletion:false))
         }
     }
     
@@ -669,6 +680,8 @@ class GameScene: SKScene {
                     self.view?.isPaused = true
                     print("pause")
                 } else if name == "currentBullet" {
+                    run(SKAction.playSoundFileNamed("nextBullet.mp3",waitForCompletion:false))
+                    
                     //remove first bullet and generate another one
                     bQueue.generateNewBullet()
                     print(bQueue.queue)
@@ -681,6 +694,8 @@ class GameScene: SKScene {
     
     
     func changeGunBoxColour(_ gun: String) {
+        run(SKAction.playSoundFileNamed("gunSelect.mp3",waitForCompletion:false))
+        
         plusGunBox.fillColor = UIColor.red
         minusGunBox.fillColor = UIColor.red
         multiGunBox.fillColor = UIColor.red
