@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6B61DFC71E73713F00422110 /* BroForce.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B61DFC61E73713F00422110 /* BroForce.mp3 */; };
-		6B61DFCA1E73732700422110 /* shot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B61DFC91E73732700422110 /* shot.mp3 */; };
-		6B61DFCE1E7376A200422110 /* playerDie.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B61DFCB1E7376A200422110 /* playerDie.mp3 */; };
-		6B61DFCF1E7376A200422110 /* zDie.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B61DFCC1E7376A200422110 /* zDie.mp3 */; };
-		6B61DFD01E7376A200422110 /* zStillAlive.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B61DFCD1E7376A200422110 /* zStillAlive.mp3 */; };
-		6B61DFD21E7376A800422110 /* nextBullet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B61DFD11E7376A800422110 /* nextBullet.mp3 */; };
-		6B61DFD41E7376AE00422110 /* gunSelect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B61DFD31E7376AE00422110 /* gunSelect.mp3 */; };
-		6B61DFD61E7378B900422110 /* MichaelMyers.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B61DFD51E7378B900422110 /* MichaelMyers.mp3 */; };
 		6BBE3C241E4E9740001646E9 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBE3C231E4E9740001646E9 /* Queue.swift */; };
+		8423A6651E8DE40300C94A9C /* BroForce.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8423A65E1E8DE40300C94A9C /* BroForce.mp3 */; };
+		8423A6661E8DE40300C94A9C /* gunSelect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8423A65F1E8DE40300C94A9C /* gunSelect.mp3 */; };
+		8423A6671E8DE40300C94A9C /* nextBullet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8423A6601E8DE40300C94A9C /* nextBullet.mp3 */; };
+		8423A6681E8DE40300C94A9C /* playerDie.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8423A6611E8DE40300C94A9C /* playerDie.mp3 */; };
+		8423A6691E8DE40300C94A9C /* shot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8423A6621E8DE40300C94A9C /* shot.mp3 */; };
+		8423A66A1E8DE40300C94A9C /* zDie.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8423A6631E8DE40300C94A9C /* zDie.mp3 */; };
+		8423A66B1E8DE40300C94A9C /* zStillAlive.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8423A6641E8DE40300C94A9C /* zStillAlive.mp3 */; };
+		8423A66D1E8DFBB400C94A9C /* Nosifer-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8423A66C1E8DFA5D00C94A9C /* Nosifer-Regular.ttf */; };
 		84DC26261E48654000BFA266 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC26251E48654000BFA266 /* AppDelegate.swift */; };
 		84DC262A1E48654000BFA266 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84DC26291E48654000BFA266 /* Actions.sks */; };
 		84DC262C1E48654000BFA266 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC262B1E48654000BFA266 /* GameScene.swift */; };
@@ -30,15 +30,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6B61DFC61E73713F00422110 /* BroForce.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = BroForce.mp3; path = ../../../../../Documents/Development/MathOfTheDead/audio/music/BroForce.mp3; sourceTree = "<group>"; };
-		6B61DFC91E73732700422110 /* shot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = shot.mp3; path = ../../../../../Documents/Development/MathOfTheDead/audio/shot.mp3; sourceTree = "<group>"; };
-		6B61DFCB1E7376A200422110 /* playerDie.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = playerDie.mp3; path = ../../../../../Documents/Development/MathOfTheDead/audio/playerDie.mp3; sourceTree = "<group>"; };
-		6B61DFCC1E7376A200422110 /* zDie.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = zDie.mp3; path = ../../../../../Documents/Development/MathOfTheDead/audio/zDie.mp3; sourceTree = "<group>"; };
-		6B61DFCD1E7376A200422110 /* zStillAlive.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = zStillAlive.mp3; path = ../../../../../Documents/Development/MathOfTheDead/audio/zStillAlive.mp3; sourceTree = "<group>"; };
-		6B61DFD11E7376A800422110 /* nextBullet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = nextBullet.mp3; path = ../../../../../Documents/Development/MathOfTheDead/audio/nextBullet.mp3; sourceTree = "<group>"; };
-		6B61DFD31E7376AE00422110 /* gunSelect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = gunSelect.mp3; path = ../../../../../Documents/Development/MathOfTheDead/audio/gunSelect.mp3; sourceTree = "<group>"; };
-		6B61DFD51E7378B900422110 /* MichaelMyers.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = MichaelMyers.mp3; path = ../../../../../Documents/Development/MathOfTheDead/audio/music/MichaelMyers.mp3; sourceTree = "<group>"; };
 		6BBE3C231E4E9740001646E9 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		8423A65E1E8DE40300C94A9C /* BroForce.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BroForce.mp3; sourceTree = "<group>"; };
+		8423A65F1E8DE40300C94A9C /* gunSelect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gunSelect.mp3; sourceTree = "<group>"; };
+		8423A6601E8DE40300C94A9C /* nextBullet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = nextBullet.mp3; sourceTree = "<group>"; };
+		8423A6611E8DE40300C94A9C /* playerDie.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = playerDie.mp3; sourceTree = "<group>"; };
+		8423A6621E8DE40300C94A9C /* shot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shot.mp3; sourceTree = "<group>"; };
+		8423A6631E8DE40300C94A9C /* zDie.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zDie.mp3; sourceTree = "<group>"; };
+		8423A6641E8DE40300C94A9C /* zStillAlive.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zStillAlive.mp3; sourceTree = "<group>"; };
+		8423A66C1E8DFA5D00C94A9C /* Nosifer-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nosifer-Regular.ttf"; sourceTree = "<group>"; };
 		84DC26221E48654000BFA266 /* MathOfTheDead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathOfTheDead.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DC26251E48654000BFA266 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84DC26271E48654000BFA266 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -84,21 +84,21 @@
 		84DC26241E48654000BFA266 /* MathOfTheDead */ = {
 			isa = PBXGroup;
 			children = (
-				6B61DFC61E73713F00422110 /* BroForce.mp3 */,
+				8423A66C1E8DFA5D00C94A9C /* Nosifer-Regular.ttf */,
+				8423A65E1E8DE40300C94A9C /* BroForce.mp3 */,
+				8423A65F1E8DE40300C94A9C /* gunSelect.mp3 */,
+				8423A6601E8DE40300C94A9C /* nextBullet.mp3 */,
+				8423A6611E8DE40300C94A9C /* playerDie.mp3 */,
+				8423A6621E8DE40300C94A9C /* shot.mp3 */,
+				8423A6631E8DE40300C94A9C /* zDie.mp3 */,
+				8423A6641E8DE40300C94A9C /* zStillAlive.mp3 */,
 				6BBE3C231E4E9740001646E9 /* Queue.swift */,
 				84DC26251E48654000BFA266 /* AppDelegate.swift */,
 				84DC26271E48654000BFA266 /* GameScene.sks */,
 				84DC263D1E48672300BFA266 /* BackgroundTileSet.sks */,
-				6B61DFC91E73732700422110 /* shot.mp3 */,
-				6B61DFD11E7376A800422110 /* nextBullet.mp3 */,
-				6B61DFD51E7378B900422110 /* MichaelMyers.mp3 */,
-				6B61DFD31E7376AE00422110 /* gunSelect.mp3 */,
 				84DC26291E48654000BFA266 /* Actions.sks */,
 				84DC262B1E48654000BFA266 /* GameScene.swift */,
 				84DC262D1E48654000BFA266 /* GameViewController.swift */,
-				6B61DFCB1E7376A200422110 /* playerDie.mp3 */,
-				6B61DFCC1E7376A200422110 /* zDie.mp3 */,
-				6B61DFCD1E7376A200422110 /* zStillAlive.mp3 */,
 				84DC262F1E48654000BFA266 /* Main.storyboard */,
 				84DC26321E48654000BFA266 /* Assets.xcassets */,
 				84DC26341E48654000BFA266 /* LaunchScreen.storyboard */,
@@ -169,20 +169,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B61DFD41E7376AE00422110 /* gunSelect.mp3 in Resources */,
 				84DC263E1E48672300BFA266 /* BackgroundTileSet.sks in Resources */,
-				6B61DFC71E73713F00422110 /* BroForce.mp3 in Resources */,
+				8423A66B1E8DE40300C94A9C /* zStillAlive.mp3 in Resources */,
+				8423A6691E8DE40300C94A9C /* shot.mp3 in Resources */,
+				8423A66A1E8DE40300C94A9C /* zDie.mp3 in Resources */,
+				8423A6651E8DE40300C94A9C /* BroForce.mp3 in Resources */,
 				84DC26311E48654000BFA266 /* Main.storyboard in Resources */,
+				8423A66D1E8DFBB400C94A9C /* Nosifer-Regular.ttf in Resources */,
 				84DC26331E48654000BFA266 /* Assets.xcassets in Resources */,
-				6B61DFCE1E7376A200422110 /* playerDie.mp3 in Resources */,
-				6B61DFD01E7376A200422110 /* zStillAlive.mp3 in Resources */,
-				6B61DFCA1E73732700422110 /* shot.mp3 in Resources */,
-				6B61DFD21E7376A800422110 /* nextBullet.mp3 in Resources */,
-				6B61DFCF1E7376A200422110 /* zDie.mp3 in Resources */,
 				84DC26361E48654000BFA266 /* LaunchScreen.storyboard in Resources */,
+				8423A6661E8DE40300C94A9C /* gunSelect.mp3 in Resources */,
+				8423A6681E8DE40300C94A9C /* playerDie.mp3 in Resources */,
 				BFB39D271E6A028100130D74 /* GameScene.sks in Resources */,
+				8423A6671E8DE40300C94A9C /* nextBullet.mp3 in Resources */,
 				84DC262A1E48654000BFA266 /* Actions.sks in Resources */,
-				6B61DFD61E7378B900422110 /* MichaelMyers.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

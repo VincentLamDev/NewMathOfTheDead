@@ -22,7 +22,19 @@ class GameOverScene: SKScene {
         
         super.init(size: size)
         self.size1 = size
-
+        
+        let bgTexture = SKTexture(imageNamed: "dark-grass")
+        let bgDefinition = SKTileDefinition(texture: bgTexture, size: bgTexture.size())
+        let bgGroup = SKTileGroup(tileDefinition: bgDefinition)
+        let tileSet = SKTileSet(tileGroups: [bgGroup])
+        
+        let bgNode = SKTileMapNode(tileSet: tileSet, columns: 4, rows: 8, tileSize: bgTexture.size(), fillWith: bgGroup)
+        
+        bgNode.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
+        bgNode.setScale(1)
+        
+        self.addChild(bgNode)
+        
         run(SKAction.playSoundFileNamed("playerDie.mp3",waitForCompletion:false))
         
         //Game over label
@@ -81,7 +93,7 @@ class GameOverScene: SKScene {
         
         
         //Restart button label
-        restartLabel = SKLabelNode(fontNamed: "AvenirNext-Bold")
+        restartLabel = SKLabelNode(fontNamed: "Arial-Bold")
         restartLabel.text = "Restart"
         restartLabel.fontSize = 20
         var scalingFactor = min(restartBox.frame.width / restartLabel.frame.width, restartBox.frame.height / restartLabel.frame.height)
@@ -106,7 +118,7 @@ class GameOverScene: SKScene {
         
         
         //Main menu button label
-        mainMenuLabel = SKLabelNode(fontNamed: "Arial")
+        mainMenuLabel = SKLabelNode(fontNamed: "Arial-Bold")
         mainMenuLabel.text = "Main Menu"
         mainMenuLabel.fontSize = 20
         scalingFactor = min(mainMenuBox.frame.width / mainMenuLabel.frame.width, mainMenuBox.frame.height / mainMenuLabel.frame.height)

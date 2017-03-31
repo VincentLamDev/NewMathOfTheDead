@@ -10,8 +10,9 @@ import Foundation
 import SpriteKit
 
 class HomeScene: SKScene {
-    
-    
+    var gl:CAGradientLayer!
+
+    var gradientLayer: CAGradientLayer!
     var startBox: SKShapeNode!
     var startLabel: SKLabelNode!
     var leaderboardBox: SKShapeNode!
@@ -45,6 +46,27 @@ class HomeScene: SKScene {
         bgNode.setScale(1)
         self.addChild(bgNode)
         
+
+        
+        gradientLayer = CAGradientLayer()
+        
+        gradientLayer.frame.size.width = size.width
+        gradientLayer.frame.size.height = size.height
+        
+        gradientLayer.colors = [UIColor.black.cgColor, UIColor.clear]
+        gradientLayer.locations = [0.0, 0.40]
+        view?.layer.addSublayer(gradientLayer)
+        
+        
+//        let view = UIView(frame: CGRect(x: 100, y: 100, width: size.width, height: size.height))
+//
+//        let layer = CAGradientLayer()
+//        layer.frame = CGRect(x: 100, y: 100, width: size.width, height: size.height)
+//        layer.colors = [UIColor.blue.cgColor, UIColor.yellow.cgColor]
+//        layer.zPosition = 2.0
+//        view.layer.addSublayer(layer)
+        
+
         
         
         //Game over label
@@ -86,7 +108,7 @@ class HomeScene: SKScene {
         
         
         //Start button label
-        startLabel = SKLabelNode(fontNamed: "AvenirNext-Bold")
+        startLabel = SKLabelNode(fontNamed: "Arial")
         startLabel.text = "Start"
         startLabel.fontSize = 20
         scalingFactor = min(startBox.frame.width / startLabel.frame.width, startBox.frame.height / startLabel.frame.height)
@@ -110,7 +132,7 @@ class HomeScene: SKScene {
         
         
         //Leaderboard button label
-        leaderboardLabel = SKLabelNode(fontNamed: "AvenirNext-Bold")
+        leaderboardLabel = SKLabelNode(fontNamed: "Arial")
         leaderboardLabel.text = "High Scores"
         leaderboardLabel.fontSize = 20
         scalingFactor = min(leaderboardBox.frame.width / leaderboardLabel.frame.width, leaderboardBox.frame.height / leaderboardLabel.frame.height)
@@ -133,18 +155,31 @@ class HomeScene: SKScene {
         
         
         //Settings button label
-        settingsLabel = SKLabelNode(fontNamed: "AvenirNext-Bold")
+        settingsLabel = SKLabelNode(fontNamed: "Arial")
         settingsLabel.text = "Settings"
         settingsLabel.fontSize = 20
         scalingFactor = min(settingsBox.frame.width / settingsLabel.frame.width, settingsBox.frame.height / settingsLabel.frame.height)
         settingsLabel.fontSize *= (scalingFactor * 0.7)
         settingsLabel.position = CGPoint(x: leaderboardBox.frame.midX, y: settingsBox.frame.midY - settingsLabel.frame.height / 2.0)
         addChild(settingsLabel)
+        
+        //self.createGradientLayer()
+
     }
     
     // 6
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func createGradientLayer() {
+        gradientLayer = CAGradientLayer()
+        
+        gradientLayer.frame = (self.view?.frame)!
+        
+        gradientLayer.colors = [UIColor.black.cgColor, UIColor.clear]
+        gradientLayer.locations = [0.0, 0.40]
+        self.view?.layer.addSublayer(gradientLayer)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
