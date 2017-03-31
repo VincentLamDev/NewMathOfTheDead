@@ -12,6 +12,7 @@ import SpriteKit
 class HomeScene: SKScene {
     var gl:CAGradientLayer!
 
+    var logo: SKNode!
     var gradientLayer: CAGradientLayer!
     var startBox: SKShapeNode!
     var startLabel: SKLabelNode!
@@ -117,51 +118,60 @@ class HomeScene: SKScene {
         startLabel.name = "start"
         addChild(startLabel)
         
+        // add logo
         
-        //Leaderboard button
-        leaderboardBox = SKShapeNode()
-        yPos = self.frame.maxY * 0.4
-        leaderboardBox.path = UIBezierPath(roundedRect: CGRect(x: xPos,
-                                                               y: yPos,
-                                                               width: btnWidth,
-                                                               height: btnHeight), cornerRadius: 0).cgPath
-        leaderboardBox.fillColor = UIColor.red
-        leaderboardBox.strokeColor = UIColor.black
-        leaderboardBox.lineWidth = frame.size.width * 0.01
-        addChild(leaderboardBox)
+        let zombies = SKSpriteNode(imageNamed: "shaneszombies")
+        var zombiesScalingFactor = min(self.frame.width / zombies.frame.width, self.frame.height / zombies.frame.height)
+        zombies.position = CGPoint(x: self.frame.midX, y: self.frame.midY - zombies.frame.height / 2.0)
+        addChild(zombies)
         
         
-        //Leaderboard button label
-        leaderboardLabel = SKLabelNode(fontNamed: "Arial")
-        leaderboardLabel.text = "High Scores"
-        leaderboardLabel.fontSize = 20
-        scalingFactor = min(leaderboardBox.frame.width / leaderboardLabel.frame.width, leaderboardBox.frame.height / leaderboardLabel.frame.height)
-        leaderboardLabel.fontSize *= (scalingFactor * 0.7)
-        leaderboardLabel.position = CGPoint(x: leaderboardBox.frame.midX, y: leaderboardBox.frame.midY - leaderboardLabel.frame.height / 2.0)
-        addChild(leaderboardLabel)
+//        //Leaderboard button
+//        leaderboardBox = SKShapeNode()
+//        yPos = self.frame.maxY * 0.4
+//        leaderboardBox.path = UIBezierPath(roundedRect: CGRect(x: xPos,
+//                                                               y: yPos,
+//                                                               width: btnWidth,
+//                                                               height: btnHeight), cornerRadius: 0).cgPath
+//        leaderboardBox.fillColor = UIColor.red
+//        leaderboardBox.strokeColor = UIColor.black
+//        leaderboardBox.lineWidth = frame.size.width * 0.01
+//        addChild(leaderboardBox)
+//        
+//        
+//        //Leaderboard button label
+//        leaderboardLabel = SKLabelNode(fontNamed: "Arial")
+//        leaderboardLabel.text = "High Scores"
+//        leaderboardLabel.fontSize = 20
+//        scalingFactor = min(leaderboardBox.frame.width / leaderboardLabel.frame.width, leaderboardBox.frame.height / leaderboardLabel.frame.height)
+//        leaderboardLabel.fontSize *= (scalingFactor * 0.7)
+//        leaderboardLabel.position = CGPoint(x: leaderboardBox.frame.midX, y: leaderboardBox.frame.midY - leaderboardLabel.frame.height / 2.0)
+//        addChild(leaderboardLabel)
+//        
+//        
+//        //Setting button
+//        settingsBox = SKShapeNode()
+//        yPos = self.frame.maxY * 0.2
+//        settingsBox.path = UIBezierPath(roundedRect: CGRect(x: xPos,
+//                                                            y: yPos,
+//                                                            width: btnWidth,
+//                                                            height: btnHeight), cornerRadius: 0).cgPath
+//        settingsBox.fillColor = UIColor.red
+//        settingsBox.strokeColor = UIColor.black
+//        settingsBox.lineWidth = frame.size.width * 0.01
+//        addChild(settingsBox)
+//        
+//        
+//        //Settings button label
+//        settingsLabel = SKLabelNode(fontNamed: "Arial")
+//        settingsLabel.text = "Settings"
+//        settingsLabel.fontSize = 20
+//        scalingFactor = min(settingsBox.frame.width / settingsLabel.frame.width, settingsBox.frame.height / settingsLabel.frame.height)
+//        settingsLabel.fontSize *= (scalingFactor * 0.7)
+//        settingsLabel.position = CGPoint(x: leaderboardBox.frame.midX, y: settingsBox.frame.midY - settingsLabel.frame.height / 2.0)
+//        addChild(settingsLabel)
+//        
         
-        
-        //Setting button
-        settingsBox = SKShapeNode()
-        yPos = self.frame.maxY * 0.2
-        settingsBox.path = UIBezierPath(roundedRect: CGRect(x: xPos,
-                                                            y: yPos,
-                                                            width: btnWidth,
-                                                            height: btnHeight), cornerRadius: 0).cgPath
-        settingsBox.fillColor = UIColor.red
-        settingsBox.strokeColor = UIColor.black
-        settingsBox.lineWidth = frame.size.width * 0.01
-        addChild(settingsBox)
-        
-        
-        //Settings button label
-        settingsLabel = SKLabelNode(fontNamed: "Arial")
-        settingsLabel.text = "Settings"
-        settingsLabel.fontSize = 20
-        scalingFactor = min(settingsBox.frame.width / settingsLabel.frame.width, settingsBox.frame.height / settingsLabel.frame.height)
-        settingsLabel.fontSize *= (scalingFactor * 0.7)
-        settingsLabel.position = CGPoint(x: leaderboardBox.frame.midX, y: settingsBox.frame.midY - settingsLabel.frame.height / 2.0)
-        addChild(settingsLabel)
         
         //self.createGradientLayer()
 

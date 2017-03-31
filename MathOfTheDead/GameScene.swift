@@ -178,7 +178,8 @@ class GameScene: SKScene {
         
         // Change the fontSize.
         waveNumberLabel.fontSize *= scalingFactor
-        
+        waveNumberLabel.fontSize *= 0.7
+
         // Optionally move the SKLabelNode to the center of the rectangle.
         waveNumberLabel.position = CGPoint(x: waveNumberBox.frame.midX, y: waveNumberBox.frame.midY - waveNumberLabel.frame.height / 2.0)
         waveNumberLabel.zPosition = CGFloat(zvalue);
@@ -213,7 +214,8 @@ class GameScene: SKScene {
         
         // Change the fontSize.
         scoreDisplayLabel.fontSize *= scalingFactor
-        
+        scoreDisplayLabel.fontSize *= 0.7
+
         // Optionally move the SKLabelNode to the center of the rectangle.
         scoreDisplayLabel.position = CGPoint(x: scoreDisplayBox.frame.midX, y: scoreDisplayBox.frame.midY - scoreDisplayLabel.frame.height / 2.0)
         scoreDisplayLabel.zPosition = CGFloat(zvalue);
@@ -622,9 +624,24 @@ class GameScene: SKScene {
             //add to score
             score += maxHealth
             scoreDisplayLabel.text = "Score: " + String(score)
+            var scalingFactor = min(scoreDisplayBox.frame.width / scoreDisplayLabel.frame.width, scoreDisplayBox.frame.height / pauseButton.frame.height)
+            
+            // Change the fontSize.
+            scoreDisplayLabel.fontSize *= scalingFactor
+            scoreDisplayLabel.fontSize *= 0.7
+
+            // Optionally move the SKLabelNode to the center of the rectangle.
+            scoreDisplayLabel.position = CGPoint(x: scoreDisplayBox.frame.midX, y: scoreDisplayBox.frame.midY - scoreDisplayLabel.frame.height / 2.0)
             
             kills += 1
             waveNumberLabel.text = "Kills: " + String(kills)
+            scalingFactor = min(waveNumberBox.frame.width / waveNumberLabel.frame.width, waveNumberBox.frame.height / pauseButton.frame.height)
+            
+            // Change the fontSize.
+            waveNumberLabel.fontSize = scoreDisplayLabel.fontSize
+
+            // Optionally move the SKLabelNode to the center of the rectangle.
+            waveNumberLabel.position = CGPoint(x: waveNumberBox.frame.midX, y: waveNumberBox.frame.midY - waveNumberLabel.frame.height / 2.0)
             //remove from scene
             zombie.removeFromParent()
         } else {
@@ -735,7 +752,7 @@ class GameScene: SKScene {
         
         //display health to the screen
         zombieHealth = SKLabelNode(fontNamed: "Arial")
-        zombieHealth.fontSize = 50
+        zombieHealth.fontSize = 25
         zombieHealth.text = String(healthNum)
         
         //max health
@@ -764,7 +781,7 @@ class GameScene: SKScene {
         
         // Determine speed of the monster
         //    let actualDuration = random(min: CGFloat(2.0), max: CGFloat(4.0))
-        let actualDuration = CGFloat(27.0)
+        let actualDuration = CGFloat(40.0)
         
         // Create the actions
         let gameOverLine = frame.minY + plusGun.size.height + plusGun.size.height * 0.25 + zombie.size.height/2

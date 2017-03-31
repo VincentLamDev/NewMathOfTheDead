@@ -81,7 +81,7 @@ class GameOverScene: SKScene {
         let btnWidth = self.frame.width/2
         let btnHeight = self.frame.height/10
         let xPos = self.frame.minX + self.frame.width/4
-        var yPos = self.frame.maxY * 0.35
+        var yPos = self.frame.maxY * 0.20
         restartBox.path = UIBezierPath(roundedRect: CGRect(x: xPos,
                                                               y: yPos,
                                                               width: btnWidth,
@@ -103,28 +103,28 @@ class GameOverScene: SKScene {
         addChild(restartLabel)
         
         
-        //Return to main menu button
-        mainMenuBox = SKShapeNode()
-        yPos = self.frame.maxY * 0.15
-        mainMenuBox.path = UIBezierPath(roundedRect: CGRect(x: xPos,
-                                                           y: yPos,
-                                                           width: btnWidth,
-                                                           height: btnHeight), cornerRadius: 0).cgPath
-        mainMenuBox.fillColor = UIColor.red
-        mainMenuBox.strokeColor = UIColor.black
-        mainMenuBox.lineWidth = frame.size.width * 0.01
-        mainMenuBox.name = "menu"
-        addChild(mainMenuBox)
-        
-        
-        //Main menu button label
-        mainMenuLabel = SKLabelNode(fontNamed: "Arial-Bold")
-        mainMenuLabel.text = "Main Menu"
-        mainMenuLabel.fontSize = 20
-        scalingFactor = min(mainMenuBox.frame.width / mainMenuLabel.frame.width, mainMenuBox.frame.height / mainMenuLabel.frame.height)
-        mainMenuLabel.fontSize *= (scalingFactor * 0.7)
-        mainMenuLabel.position = CGPoint(x: mainMenuBox.frame.midX, y: mainMenuBox.frame.midY - mainMenuLabel.frame.height / 2.0)
-        addChild(mainMenuLabel)
+//        //Return to main menu button
+//        mainMenuBox = SKShapeNode()
+//        yPos = self.frame.maxY * 0.15
+//        mainMenuBox.path = UIBezierPath(roundedRect: CGRect(x: xPos,
+//                                                           y: yPos,
+//                                                           width: btnWidth,
+//                                                           height: btnHeight), cornerRadius: 0).cgPath
+//        mainMenuBox.fillColor = UIColor.red
+//        mainMenuBox.strokeColor = UIColor.black
+//        mainMenuBox.lineWidth = frame.size.width * 0.01
+//        mainMenuBox.name = "menu"
+//        addChild(mainMenuBox)
+//        
+//        
+//        //Main menu button label
+//        mainMenuLabel = SKLabelNode(fontNamed: "Arial-Bold")
+//        mainMenuLabel.text = "Main Menu"
+//        mainMenuLabel.fontSize = 20
+//        scalingFactor = min(mainMenuBox.frame.width / mainMenuLabel.frame.width, mainMenuBox.frame.height / mainMenuLabel.frame.height)
+//        mainMenuLabel.fontSize *= (scalingFactor * 0.7)
+//        mainMenuLabel.position = CGPoint(x: mainMenuBox.frame.midX, y: mainMenuBox.frame.midY - mainMenuLabel.frame.height / 2.0)
+//        addChild(mainMenuLabel)
     
         
     }

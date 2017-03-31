@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26BE6C481E8EC6BF00D1662B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26BE6C471E8EC6BF00D1662B /* GameKit.framework */; };
 		6BBE3C241E4E9740001646E9 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBE3C231E4E9740001646E9 /* Queue.swift */; };
 		8423A6651E8DE40300C94A9C /* BroForce.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8423A65E1E8DE40300C94A9C /* BroForce.mp3 */; };
 		8423A6661E8DE40300C94A9C /* gunSelect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8423A65F1E8DE40300C94A9C /* gunSelect.mp3 */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26BE6C471E8EC6BF00D1662B /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		6BBE3C231E4E9740001646E9 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		8423A65E1E8DE40300C94A9C /* BroForce.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BroForce.mp3; sourceTree = "<group>"; };
 		8423A65F1E8DE40300C94A9C /* gunSelect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gunSelect.mp3; sourceTree = "<group>"; };
@@ -59,17 +61,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26BE6C481E8EC6BF00D1662B /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26BE6C461E8EC6BF00D1662B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				26BE6C471E8EC6BF00D1662B /* GameKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		84DC26191E48654000BFA266 = {
 			isa = PBXGroup;
 			children = (
 				84DC26241E48654000BFA266 /* MathOfTheDead */,
 				84DC26231E48654000BFA266 /* Products */,
+				26BE6C461E8EC6BF00D1662B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,8 +153,13 @@
 				TargetAttributes = {
 					84DC26211E48654000BFA266 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 3T8BJ2ZAY7;
+						DevelopmentTeam = N6RP3H788Z;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -321,7 +338,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3T8BJ2ZAY7;
+				DEVELOPMENT_TEAM = N6RP3H788Z;
 				INFOPLIST_FILE = MathOfTheDead/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = NGU.MathOfTheDead;
@@ -334,7 +351,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3T8BJ2ZAY7;
+				DEVELOPMENT_TEAM = N6RP3H788Z;
 				INFOPLIST_FILE = MathOfTheDead/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = NGU.MathOfTheDead;
