@@ -404,7 +404,8 @@ class GameScene: SKScene {
             bulletQueueLabel.fontSize *= scalingFactorB4
             
             // Optionally move the SKLabelNode to the center of the rectangle.
-            bulletQueueLabel.position = CGPoint(x: bulletQueueBox.frame.midX - 25, y: bulletQueueBox.frame.midY - bulletQueueLabel.frame.height / 2.0)
+            let moveLeft = bulletQueueBox.frame.size.width*0.1
+            bulletQueueLabel.position = CGPoint(x: bulletQueueBox.frame.midX-moveLeft, y: bulletQueueBox.frame.midY - bulletQueueLabel.frame.height / 2.0)
             bulletQueueLabel.zPosition = CGFloat(zvalue + 2);
             addChild(bulletQueueLabel)
         }
